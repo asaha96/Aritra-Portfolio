@@ -1,23 +1,11 @@
 import { Download, FileText, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const Resume = () => {
-  const highlights = [
-    'Led data science workflows at NVIDIA AI Makerspace Nexus for HPC systems',
-    'Processed 100M+ BSMs for connected vehicle analytics and emergency response',
-    'Built Canvas LTI 1.3 app serving 5,000+ students with <200ms latency',
-    'Achieved 85% agreement with instructor grading using LLM evaluation',
-    'Reduced emergency decision time by ~30% through ML-driven dashboards',
-    'Software Engineering Intern at Siemens with full-stack development experience',
-    'Teaching Assistant for PSYC 3040 and Executive Director of SAILea',
-    'Expertise in Python, React, ML pipelines, cloud platforms, and accessibility'
-  ];
+  const highlights = ['Led data science workflows at NVIDIA AI Makerspace Nexus for HPC systems', 'Processed 100M+ BSMs for connected vehicle analytics and emergency response', 'Built Canvas LTI 1.3 app serving 5,000+ students with <200ms latency', 'Achieved 85% agreement with instructor grading using LLM evaluation', 'Reduced emergency decision time by ~30% through ML-driven dashboards', 'Software Engineering Intern at Siemens with full-stack development experience', 'Teaching Assistant for PSYC 3040 and Executive Director of SAILea', 'Expertise in Python, React, ML pipelines, cloud platforms, and accessibility'];
 
   // In a real implementation, this would be the actual PDF path
   const resumeUrl = "/Aritra_Saha_Resume.pdf";
-
-  return (
-    <section id="resume" className="section-padding">
+  return <section id="resume" className="section-padding">
       <div className="max-w-7xl mx-auto container-padding">
         <div className="space-y-8">
           {/* Header */}
@@ -40,12 +28,7 @@ const Resume = () => {
                 
                 {/* PDF Embed */}
                 <div className="bg-surface rounded-lg border border-border overflow-hidden">
-                  <iframe
-                    src="/Aritra_Saha_Resume.pdf"
-                    className="w-full h-[600px]"
-                    title="Aritra Saha Resume"
-                    aria-label="Aritra Saha's resume document"
-                  />
+                  <iframe src="/Aritra_Saha_Resume.pdf" className="w-full h-[600px]" title="Aritra Saha Resume" aria-label="Aritra Saha's resume document" />
                   <div className="p-4 text-center border-t border-border">
                     <p className="text-sm text-muted-foreground">
                       Full resume with detailed experience, education, and project information
@@ -55,11 +38,7 @@ const Resume = () => {
 
                 {/* Download Button */}
                 <Button asChild className="w-full btn-hero">
-                  <a 
-                    href={resumeUrl} 
-                    download="Aritra_Saha_Resume.pdf"
-                    aria-label="Download Aritra Saha's resume as PDF"
-                  >
+                  <a href={resumeUrl} download="Aritra_Saha_Resume.pdf" aria-label="Download Aritra Saha's resume as PDF">
                     <Download className="mr-2 h-5 w-5" />
                     Download Resume
                   </a>
@@ -81,12 +60,10 @@ const Resume = () => {
               </div>
 
               <div className="space-y-4">
-                {highlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start space-x-3">
+                {highlights.map((highlight, index) => <div key={index} className="flex items-start space-x-3">
                     <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
                     <p className="text-muted-foreground leading-relaxed">{highlight}</p>
-                  </div>
-                ))}
+                  </div>)}
               </div>
 
               {/* Additional Info */}
@@ -104,8 +81,6 @@ const Resume = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Resume;

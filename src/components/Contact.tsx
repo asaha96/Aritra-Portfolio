@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,15 +11,15 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -29,30 +28,28 @@ const Contact = () => {
     setTimeout(() => {
       toast({
         title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you within 24-48 hours.",
+        description: "Thank you for reaching out. I'll get back to you within 24-48 hours."
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
       setIsSubmitting(false);
     }, 1000);
   };
-
-  const contactLinks = [
-    {
-      icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/aritrasaha',
-      description: 'View my code and open source contributions'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/aritrasaha',
-      description: 'Connect professionally and see my experience'
-    }
-  ];
-
-  return (
-    <section id="contact" className="section-padding bg-surface">
+  const contactLinks = [{
+    icon: Github,
+    label: 'GitHub',
+    href: 'https://github.com/aritrasaha',
+    description: 'View my code and open source contributions'
+  }, {
+    icon: Linkedin,
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/aritrasaha',
+    description: 'Connect professionally and see my experience'
+  }];
+  return <section id="contact" className="section-padding bg-surface">
       <div className="max-w-7xl mx-auto container-padding">
         <div className="space-y-12">
           {/* Header */}
@@ -81,32 +78,14 @@ const Contact = () => {
                     <label htmlFor="name" className="text-sm font-medium text-foreground">
                       Name *
                     </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      className="w-full"
-                    />
+                    <Input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} placeholder="Your full name" className="w-full" />
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-foreground">
                       Email *
                     </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your.email@example.com"
-                      className="w-full"
-                    />
+                    <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="your.email@example.com" className="w-full" />
                   </div>
                 </div>
 
@@ -114,34 +93,17 @@ const Contact = () => {
                   <label htmlFor="message" className="text-sm font-medium text-foreground">
                     Message *
                   </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project, research, or collaboration opportunity..."
-                    rows={6}
-                    className="w-full resize-none"
-                  />
+                  <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Tell me about your project, research, or collaboration opportunity..." rows={6} className="w-full resize-none" />
                 </div>
 
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full btn-hero"
-                >
-                  {isSubmitting ? (
-                    <>
+                <Button type="submit" disabled={isSubmitting} className="w-full btn-hero">
+                  {isSubmitting ? <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                       Sending...
-                    </>
-                  ) : (
-                    <>
+                    </> : <>
                       <Send className="mr-2 h-4 w-4" />
                       Send Message
-                    </>
-                  )}
+                    </>}
                 </Button>
 
                 <div className="text-xs text-muted-foreground">
@@ -165,12 +127,7 @@ const Contact = () => {
                   <Mail className="h-5 w-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="font-medium text-card-foreground">Email</p>
-                    <a 
-                      href="mailto:asaha94@gatech.edu"
-                      className="text-primary hover:text-primary-dark transition-colors"
-                    >
-                      asaha94@gatech.edu
-                    </a>
+                    <a href="mailto:asaha94@gatech.edu" className="text-primary hover:text-primary-dark transition-colors">asaha96@gatech.edu</a>
                   </div>
                 </div>
               </div>
@@ -179,22 +136,13 @@ const Contact = () => {
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold">Connect Online</h3>
                 <div className="space-y-3">
-                  {contactLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-3 p-4 bg-card border border-border rounded-lg hover:shadow-md transition-all duration-200 card-hover"
-                      aria-label={`Connect with Aritra on ${link.label}`}
-                    >
+                  {contactLinks.map((link, index) => <a key={index} href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 p-4 bg-card border border-border rounded-lg hover:shadow-md transition-all duration-200 card-hover" aria-label={`Connect with Aritra on ${link.label}`}>
                       <link.icon className="h-5 w-5 text-primary flex-shrink-0" />
                       <div>
                         <p className="font-medium text-card-foreground">{link.label}</p>
                         <p className="text-sm text-muted-foreground">{link.description}</p>
                       </div>
-                    </a>
-                  ))}
+                    </a>)}
                 </div>
               </div>
 
@@ -220,8 +168,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;

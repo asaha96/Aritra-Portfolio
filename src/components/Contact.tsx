@@ -41,12 +41,12 @@ const Contact = () => {
   const contactLinks = [{
     icon: Github,
     label: 'GitHub',
-    href: 'https://github.com/aritrasaha',
+    href: 'https://github.com/asaha96',
     description: 'View my code and open source contributions'
   }, {
     icon: Linkedin,
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/aritrasaha',
+    href: 'https://www.linkedin.com/in/aritra-saha-522373261/',
     description: 'Connect professionally and see my experience'
   }];
   return <section id="contact" className="section-padding bg-surface">

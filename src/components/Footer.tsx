@@ -53,7 +53,7 @@ const Footer = () => {
               <Mail className="h-4 w-4" />
             </a>
             <a
-              href="https://github.com/aritrasaha"
+              href="https://github.com/asaha96"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
@@ -62,7 +62,7 @@ const Footer = () => {
               <Github className="h-4 w-4" />
             </a>
             <a
-              href="https://linkedin.com/in/aritrasaha"
+              href="https://www.linkedin.com/in/aritra-saha-522373261/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"

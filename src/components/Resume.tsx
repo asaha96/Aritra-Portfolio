@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button';
 const Resume = () => {
   const highlights = ['Led data science workflows at NVIDIA AI Makerspace Nexus for HPC systems', 'Processed 100M+ BSMs for connected vehicle analytics and emergency response', 'Built Canvas LTI 1.3 app serving 5,000+ students with <200ms latency', 'Achieved 85% agreement with instructor grading using LLM evaluation', 'Reduced emergency decision time by ~30% through ML-driven dashboards', 'Software Engineering Intern at Siemens with full-stack development experience', 'Teaching Assistant for PSYC 3040 and Executive Director of SAILea', 'Expertise in Python, React, ML pipelines, cloud platforms, and accessibility'];
 
-  // In a real implementation, this would be the actual PDF path
-  const resumeUrl = "/Aritra_Saha_Resume.pdf";
+  // Google Drive embed URL for the resume
+  const resumeUrl = "https://drive.google.com/uc?id=1Wab9D7NAie5B-DRdYJKcAv158plP8KRo&export=download";
+  const resumeEmbedUrl = "https://drive.google.com/file/d/1Wab9D7NAie5B-DRdYJKcAv158plP8KRo/preview";
   return <section id="resume" className="section-padding">
       <div className="max-w-7xl mx-auto container-padding">
         <div className="space-y-8">
@@ -28,7 +29,7 @@ const Resume = () => {
                 
                 {/* PDF Embed */}
                 <div className="bg-surface rounded-lg border border-border overflow-hidden">
-                  <iframe src="/Aritra_Saha_Resume.pdf" className="w-full h-[600px]" title="Aritra Saha Resume" aria-label="Aritra Saha's resume document" />
+                  <iframe src={resumeEmbedUrl} className="w-full h-[600px]" title="Aritra Saha Resume" aria-label="Aritra Saha's resume document" />
                   <div className="p-4 text-center border-t border-border">
                     <p className="text-sm text-muted-foreground">
                       Full resume with detailed experience, education, and project information

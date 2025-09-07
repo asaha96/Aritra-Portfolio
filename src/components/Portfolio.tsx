@@ -1,6 +1,7 @@
 import { ExternalLink, Github, FileText, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import vehicleDashboard from '@/assets/vehicle-dashboard.jpg';
+// Using uploaded vehicle dashboard image
+const vehicleDashboard = '/lovable-uploads/ee3b6403-dafd-41bc-9fda-014f47452aaf.png';
 import leatInterface from '@/assets/project-leat-interface.jpg';
 
 const Portfolio = () => {

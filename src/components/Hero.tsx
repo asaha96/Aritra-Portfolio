@@ -1,6 +1,5 @@
 import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/aritra-headshot.jpg';
 
 const Hero = () => {
   const skills = [
@@ -17,8 +16,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center hero-gradient">
       <div className="max-w-7xl mx-auto container-padding w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+        <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
@@ -27,13 +25,13 @@ const Hero = () => {
                 Data driven.
               </h1>
               
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
                 I design and ship AI, data, and UX systems that solve clear problems and show measurable impact.
               </p>
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild className="btn-hero">
                 <a href="#resume" aria-label="View resume section">
                   <Download className="mr-2 h-5 w-5" />
@@ -50,7 +48,7 @@ const Hero = () => {
             </div>
 
             {/* Skills badges */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               {skills.map((skill) => (
                 <span
                   key={skill}
@@ -64,7 +62,7 @@ const Hero = () => {
             {/* Highlights */}
             <div className="space-y-3">
               <h3 className="text-lg font-semibold text-foreground">Key Achievements</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2 max-w-2xl mx-auto text-left">
                 {highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start">
                     <span className="inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
@@ -72,19 +70,6 @@ const Hero = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-
-          {/* Image */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <img
-                src={heroImage}
-                alt="Aritra Saha - Computer Science student and researcher at Georgia Tech"
-                className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl object-cover shadow-xl"
-                loading="eager"
-              />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
           </div>
         </div>

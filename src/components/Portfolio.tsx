@@ -1,6 +1,6 @@
 import { ExternalLink, Github, FileText, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import cvDashboard from '@/assets/project-cv-dashboard.jpg';
+import vehicleDashboard from '@/assets/vehicle-dashboard.jpg';
 import leatInterface from '@/assets/project-leat-interface.jpg';
 
 const Portfolio = () => {
@@ -8,7 +8,7 @@ const Portfolio = () => {
     {
       id: 1,
       title: 'Connected Vehicle Data Analytics for Emergency Response',
-      image: cvDashboard,
+      image: vehicleDashboard,
       imageAlt: 'Connected vehicle data analytics dashboard showing real-time traffic flow and emergency response metrics',
       context: 'ITS and CAV Lab research project processing massive datasets to improve emergency response times',
       actions: [

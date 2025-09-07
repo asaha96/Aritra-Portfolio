@@ -38,15 +38,19 @@ const Resume = () => {
                   <h3 className="text-xl font-semibold">Aritra Saha Resume</h3>
                 </div>
                 
-                {/* PDF Embed - In production, this would be the actual PDF */}
-                <div className="bg-surface rounded-lg border-2 border-dashed border-border p-12 text-center">
-                  <FileText className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-4">
-                    Resume PDF would be embedded here
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Full resume with detailed experience, education, and project information
-                  </p>
+                {/* PDF Embed */}
+                <div className="bg-surface rounded-lg border border-border overflow-hidden">
+                  <iframe
+                    src="/Aritra_Saha_Resume.pdf"
+                    className="w-full h-[600px]"
+                    title="Aritra Saha Resume"
+                    aria-label="Aritra Saha's resume document"
+                  />
+                  <div className="p-4 text-center border-t border-border">
+                    <p className="text-sm text-muted-foreground">
+                      Full resume with detailed experience, education, and project information
+                    </p>
+                  </div>
                 </div>
 
                 {/* Download Button */}

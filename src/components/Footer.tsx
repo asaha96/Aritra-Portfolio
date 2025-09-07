@@ -46,7 +46,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex items-center justify-end space-x-4">
             <a
-              href="mailto:asaha94@gatech.edu"
+              href="mailto:asaha96@gatech.edu"
               className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
               aria-label="Email Aritra Saha"
             >

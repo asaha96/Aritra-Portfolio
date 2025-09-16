@@ -2,7 +2,7 @@ import { ExternalLink, Github, FileText, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 // Using uploaded vehicle dashboard image
 const vehicleDashboard = '/lovable-uploads/ee3b6403-dafd-41bc-9fda-014f47452aaf.png';
-import leatInterface from '@/assets/project-leat-interface.jpg';
+import leatInterface from '@/assets/leat-interface.png';
 
 const Portfolio = () => {
   const projects = [
@@ -10,8 +10,9 @@ const Portfolio = () => {
       id: 1,
       title: 'Connected Vehicle Data Analytics for Emergency Response',
       image: vehicleDashboard,
-      imageAlt: 'Connected vehicle data analytics dashboard showing real-time traffic flow and emergency response metrics',
+      imageAlt: 'Visualization of emergency vehicle trajectories over North Avenue Bridge',
       context: 'ITS and CAV Lab research project processing massive datasets to improve emergency response times',
+      impact: 'This work directly enhances emergency responder capabilities by reducing decision-making time during critical incidents, potentially saving lives through faster, more informed emergency response deployment.',
       actions: [
         'Processed over 100,000,000 BSMs by converting live PCAP to CSV with Scapy, PyShark, and tshark',
         'Built real-time visualization dashboards using PyDeck and Altair for situational awareness',
@@ -36,8 +37,9 @@ const Portfolio = () => {
       id: 2,
       title: 'Leat - AI-Powered Canvas LTI Flashcard System',
       image: leatInterface,
-      imageAlt: 'Leat educational technology interface showing Canvas LTI integration and flashcard functionality',
+      imageAlt: 'AI-powered spaced repetition flashcard interface showing a study question, answer, and feedback options to track learner confidence and optimize review intervals.',
       context: 'Educational technology research with Dr. David Joyner focusing on AI-enhanced learning tools',
+      impact: 'This system transforms how students learn by providing personalized, data-driven study experiences that adapt to individual learning patterns, helping thousands of students achieve better retention and academic success.',
       actions: [
         'Delivered Canvas LTI 1.3 app with 1,000+ flashcards and interactive quizzes',
         'Built Python REST backend with PostgreSQL for robust data management',
@@ -117,6 +119,12 @@ const Portfolio = () => {
                     <p className="text-muted-foreground leading-relaxed">
                       {project.context}
                     </p>
+                    
+                    <div className="p-4 bg-accent/50 rounded-lg border-l-4 border-primary">
+                      <p className="text-sm leading-relaxed font-medium">
+                        <span className="text-primary font-semibold">Impact:</span> {project.impact}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Actions */}

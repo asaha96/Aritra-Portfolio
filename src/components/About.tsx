@@ -71,6 +71,29 @@ const About = () => {
               </div>
             </div>
 
+            {/* Key Achievements */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Key Achievements</h3>
+              <div className="space-y-3">
+                <div className="p-4 bg-card rounded-lg border border-border">
+                  <h4 className="font-semibold text-foreground">ITS & CAV Lab Research Assistant</h4>
+                  <p className="text-sm text-muted-foreground">Processed 100M+ BSM records, reducing emergency decision time by 30%</p>
+                </div>
+                <div className="p-4 bg-card rounded-lg border border-border">
+                  <h4 className="font-semibold text-foreground">EdTech Research with Dr. David Joyner</h4>
+                  <p className="text-sm text-muted-foreground">Built AI-powered Canvas LTI app achieving 85% grading accuracy for 5K+ students</p>
+                </div>
+                <div className="p-4 bg-card rounded-lg border border-border">
+                  <h4 className="font-semibold text-foreground">AI Makerspace Nexus Lead</h4>
+                  <p className="text-sm text-muted-foreground">Lead data science workflows and UI development for HPC systems</p>
+                </div>
+                <div className="p-4 bg-card rounded-lg border border-border">
+                  <h4 className="font-semibold text-foreground">Executive Director, SAILea</h4>
+                  <p className="text-sm text-muted-foreground">Leading organizational strategy and operations for student AI learning community</p>
+                </div>
+              </div>
+            </div>
+
             {/* Education Timeline */}
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Education</h3>

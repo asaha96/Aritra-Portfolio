@@ -44,11 +44,19 @@ const About = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed">
-                I am a Computer Science student at Georgia Tech in the BS/MS track with a focus on Human Computer Interaction and Artificial Intelligence. I work in multiple research labs, including the Intelligent Transportation Systems and Connected and Autonomous Vehicle Lab, where I build data pipelines and analytics for traffic studies, and the AI Makerspace Nexus, where I lead data science workflows and user interface development for high performance computing.
+                I am a BS/MS Computer Science student at Georgia Tech focusing on Human–Computer Interaction and Artificial Intelligence. My work spans machine learning, data systems, and user-centered design, with a focus on building tools that are both intelligent and practical.
               </p>
               
               <p className="text-muted-foreground leading-relaxed">
-                I also contribute to education technology research with Dr. David Joyner, designing AI-based flashcard and grading tools for learning management systems. Beyond research, I serve as Executive Director of SAILea and as a teaching assistant for PSYC 3040. My interests span UX, AI, data systems, and educational technology, with a focus on building usable, data-driven solutions that create measurable impact for users and organizations.
+                I work in the Intelligent Transportation Systems and Connected & Autonomous Vehicle Lab, where I build large-scale data pipelines and analytics for traffic and emergency response studies. In the AI Makerspace Nexus, I lead data science workflows and develop interfaces for high-performance computing, including privacy-preserving AI tools used across campus.
+              </p>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                I also contribute to educational technology research with Dr. David Joyner, designing AI-driven flashcard, grading, and study tools for Canvas. Outside research, I serve as Executive Director of SAILea and as a teaching assistant for PSYC 3040.
+              </p>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                My interests span UX, ML, data engineering, and EdTech. I care about building usable, data-driven systems that create measurable impact for students, researchers, and organizations.
               </p>
             </div>
           </div>

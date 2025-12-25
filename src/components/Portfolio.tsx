@@ -2,6 +2,8 @@ import { ExternalLink, Github, BarChart3, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import vehicleTrajectory from '@/assets/vehicle-trajectory.png';
 import leitFlashcards from '@/assets/leit-flashcards.png';
+import chatgtImage from '@/assets/chatgt.png';
+import atlmetrovisImage from '@/assets/atlmetrovis.png';
 
 const Portfolio = () => {
   const projects = [
@@ -57,7 +59,7 @@ const Portfolio = () => {
     {
       id: 3,
       title: 'ChatGT — Local AI Study Assistant for Georgia Tech',
-      image: leitFlashcards,
+      image: chatgtImage,
       imageAlt: 'ChatGT privacy-first AI study assistant interface',
       context: 'A privacy-first AI productivity platform using local LLMs, built for 5,000+ GT students',
       impact: 'ChatGT gives students a powerful, private, on-device AI assistant for studying, summarizing, question generation, and flashcard creation. Unlike cloud-based tools, ChatGT processes all data locally using Ollama, keeping sensitive academic documents on the user\'s device. The platform is now ready for deployment to over 5,000 students across Georgia Tech.',
@@ -80,13 +82,13 @@ const Portfolio = () => {
       metrics: ['5K+ students', '100% private', 'Local LLMs'],
       tags: ['React', 'TypeScript', 'Tailwind', 'shadcn', 'Ollama', 'PDF.js', 'Supabase', 'PACE HPC', 'Local RAG', 'LLM Engineering'],
       links: {
-        demo: 'https://drive.google.com/file/d/1JIbJbD8Is26EcSnW3WfA1zLrAnCyGgE7/view?usp=sharing'
+        demo: 'https://drive.google.com/file/d/1Wc8allTp_IdQYf6Okii8t2Y0ZReQ2wXJ/view?usp=sharing'
       }
     },
     {
       id: 4,
       title: 'ATLMetroVis — Atlanta Transportation Inequity & Safety Visualization',
-      image: leitFlashcards,
+      image: atlmetrovisImage,
       imageAlt: 'ATLMetroVis dashboard showing Atlanta commute and crash data visualization',
       context: 'Interactive dashboard combining commute times and crash patterns across Georgia',
       impact: 'ATLMetroVis reveals how commute burdens and crash risks overlap across the Atlanta metro region. Planners, policymakers, and community groups can use the tool to quickly identify inequities, hotspots, and neighborhoods that need targeted investment. By merging travel behavior and safety data into one exploratory dashboard, the project supports evidence-based transportation planning.',

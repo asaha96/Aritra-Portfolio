@@ -1,4 +1,4 @@
-import { ExternalLink, Github, BarChart3 } from 'lucide-react';
+import { ExternalLink, Github, BarChart3, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import vehicleTrajectory from '@/assets/vehicle-trajectory.png';
 import leitFlashcards from '@/assets/leit-flashcards.png';
@@ -52,6 +52,62 @@ const Portfolio = () => {
       links: {
         demo: 'https://drive.google.com/file/d/1VbbJK7WuFmNf7sG2uch6thGEfBHOcD1d/view?usp=sharing',
         repo: 'https://github.com/asaha96/Leit'
+      }
+    },
+    {
+      id: 3,
+      title: 'ChatGT — Local AI Study Assistant for Georgia Tech',
+      image: leitFlashcards,
+      imageAlt: 'ChatGT privacy-first AI study assistant interface',
+      context: 'A privacy-first AI productivity platform using local LLMs, built for 5,000+ GT students',
+      impact: 'ChatGT gives students a powerful, private, on-device AI assistant for studying, summarizing, question generation, and flashcard creation. Unlike cloud-based tools, ChatGT processes all data locally using Ollama, keeping sensitive academic documents on the user\'s device. The platform is now ready for deployment to over 5,000 students across Georgia Tech.',
+      actions: [
+        'Architected dual-mode chat system supporting general AI assistance and strict RAG with page-level citations',
+        'Integrated Ollama with multiple local models (Llama-3, Phi-3, Gemma-2) to ensure 100% privacy and zero data egress',
+        'Implemented real-time streaming token responses for smooth user experience during long RAG queries',
+        'Developed flashcard pipeline that extracts key concepts from PDFs and generates Q&A pairs through prompt engineering',
+        'Created adaptive flashcard engine with a 1–5 confidence scoring system for spaced repetition',
+        'Built CSV export system for Anki interoperability',
+        'Solved cluster deployment for PACE GPUs using SSH tunneling, filesystem fixes, and reproducible automation scripts'
+      ],
+      results: [
+        'Ready for deployment to 5,000+ GT students',
+        'Fully local LLM processing with no external data transfer',
+        'Real-time streaming chat for long-form reasoning',
+        'Automated extraction of study material from complex PDFs',
+        'Reproducible PACE deployment workflow for future developers'
+      ],
+      metrics: ['5K+ students', '100% private', 'Local LLMs'],
+      tags: ['React', 'TypeScript', 'Tailwind', 'shadcn', 'Ollama', 'PDF.js', 'Supabase', 'PACE HPC', 'Local RAG', 'LLM Engineering'],
+      links: {
+        demo: 'https://drive.google.com/file/d/1JIbJbD8Is26EcSnW3WfA1zLrAnCyGgE7/view?usp=sharing'
+      }
+    },
+    {
+      id: 4,
+      title: 'ATLMetroVis — Atlanta Transportation Inequity & Safety Visualization',
+      image: leitFlashcards,
+      imageAlt: 'ATLMetroVis dashboard showing Atlanta commute and crash data visualization',
+      context: 'Interactive dashboard combining commute times and crash patterns across Georgia',
+      impact: 'ATLMetroVis reveals how commute burdens and crash risks overlap across the Atlanta metro region. Planners, policymakers, and community groups can use the tool to quickly identify inequities, hotspots, and neighborhoods that need targeted investment. By merging travel behavior and safety data into one exploratory dashboard, the project supports evidence-based transportation planning.',
+      actions: [
+        'Processed and cleaned Georgia\'s 2023 commute dataset across 538 cities, engineering derived attributes such as county assignment, remote work ratio, and county-level commute averages',
+        'Built analysis-ready crash datasets (2020–2024) with attributes for severity, lighting, surface condition, and driver demographics',
+        'Designed linked views: county-level choropleth map, city-level symbol map, and remote work vs commute time scatterplot',
+        'Implemented Tableau interactions enabling filtering, zooming, and county-to-city drilldown analysis',
+        'Created user tasks enabling planners to identify long commutes, evaluate city-to-county differences, examine crash clusters, and understand potential relationships between commute behavior and safety outcomes'
+      ],
+      results: [
+        'Integrated two major datasets into a single visual analytics tool',
+        'Enabled high-level regional scanning and granular city-level exploration',
+        'Supported data-driven decision-making for regional planners',
+        'Revealed patterns between commute burdens, crash density, and working-from-home behavior'
+      ],
+      metrics: ['538 cities', '5 years data', '2 datasets'],
+      tags: ['Tableau', 'Python', 'Pandas', 'Geospatial Analysis', 'Data Visualization', 'Urban Analytics'],
+      links: {
+        demo: 'https://drive.google.com/file/d/1JIbJbD8Is26EcSnW3WfA1zLrAnCyGgE7/view?usp=sharing',
+        writeup: 'https://docs.google.com/document/d/14j6O590rOv84XYtV5HQhU37G1FThFgIaNa9CXxckbX8/edit?usp=sharing'
       }
     }
   ];
@@ -183,6 +239,14 @@ const Portfolio = () => {
                         <a href={project.links.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} repository`}>
                           <Github className="h-4 w-4 mr-2" />
                           Repository
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.writeup && (
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={project.links.writeup} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} writeup`}>
+                          <FileText className="h-4 w-4 mr-2" />
+                          Writeup
                         </a>
                       </Button>
                     )}

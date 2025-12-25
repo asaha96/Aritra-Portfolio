@@ -1,15 +1,14 @@
-import { ExternalLink, Github, FileText, BarChart3 } from 'lucide-react';
+import { ExternalLink, Github, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// Using uploaded vehicle dashboard image
-const vehicleDashboard = '/lovable-uploads/ee3b6403-dafd-41bc-9fda-014f47452aaf.png';
-import leatInterface from '@/assets/leat-interface.png';
+import vehicleTrajectory from '@/assets/vehicle-trajectory.png';
+import leitFlashcards from '@/assets/leit-flashcards.png';
 
 const Portfolio = () => {
   const projects = [
     {
       id: 1,
       title: 'Connected Vehicle Data Analytics for Emergency Response',
-      image: vehicleDashboard,
+      image: vehicleTrajectory,
       imageAlt: 'Visualization of emergency vehicle trajectories over North Avenue Bridge',
       context: 'ITS and CAV Lab research project processing massive datasets to improve emergency response times',
       impact: 'This work directly enhances emergency responder capabilities by reducing decision-making time during critical incidents, potentially saving lives through faster, more informed emergency response deployment.',
@@ -27,16 +26,12 @@ const Portfolio = () => {
       ],
       metrics: ['100M+ BSMs', '30% faster decisions', 'Multi-TB data'],
       tags: ['Python', 'Pandas', 'PyDeck', 'Data Viz', 'HPC', 'CAV Analytics'],
-      links: {
-        demo: '#',
-        repo: '#',
-        writeup: '#'
-      }
+      links: {}
     },
     {
       id: 2,
-      title: 'Leat - AI-Powered Canvas LTI Flashcard System',
-      image: leatInterface,
+      title: 'Leit - AI-Powered Canvas LTI Flashcard System',
+      image: leitFlashcards,
       imageAlt: 'AI-powered spaced repetition flashcard interface showing a study question, answer, and feedback options to track learner confidence and optimize review intervals.',
       context: 'Educational technology research with Dr. David Joyner focusing on AI-enhanced learning tools',
       impact: 'This system transforms how students learn by providing personalized, data-driven study experiences that adapt to individual learning patterns, helping thousands of students achieve better retention and academic success.',
@@ -55,9 +50,8 @@ const Portfolio = () => {
       metrics: ['5K+ students', '85% accuracy', '<200ms p95'],
       tags: ['Python', 'React', 'PostgreSQL', 'LTI 1.3', 'Canvas', 'EdTech'],
       links: {
-        demo: '#',
-        repo: '#',
-        slides: '#'
+        demo: 'https://drive.google.com/file/d/1VbbJK7WuFmNf7sG2uch6thGEfBHOcD1d/view?usp=sharing',
+        repo: 'https://github.com/asaha96/Leit'
       }
     }
   ];
@@ -178,7 +172,7 @@ const Portfolio = () => {
                   <div className="flex flex-wrap gap-3">
                     {project.links.demo && (
                       <Button variant="outline" size="sm" asChild>
-                        <a href={project.links.demo} aria-label={`View ${project.title} demo`}>
+                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} demo`}>
                           <ExternalLink className="h-4 w-4 mr-2" />
                           Demo
                         </a>
@@ -186,25 +180,9 @@ const Portfolio = () => {
                     )}
                     {project.links.repo && (
                       <Button variant="outline" size="sm" asChild>
-                        <a href={project.links.repo} aria-label={`View ${project.title} repository`}>
+                        <a href={project.links.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} repository`}>
                           <Github className="h-4 w-4 mr-2" />
                           Repository
-                        </a>
-                      </Button>
-                    )}
-                    {project.links.writeup && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={project.links.writeup} aria-label={`Read ${project.title} writeup`}>
-                          <FileText className="h-4 w-4 mr-2" />
-                          Writeup
-                        </a>
-                      </Button>
-                    )}
-                    {project.links.slides && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={project.links.slides} aria-label={`View ${project.title} slides`}>
-                          <FileText className="h-4 w-4 mr-2" />
-                          Slides
                         </a>
                       </Button>
                     )}

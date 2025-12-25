@@ -41,7 +41,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email to Aritra
     const emailResponse = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["asaha96@gatech.edu"],
+      to: ["aritras059@gmail.com"],
       subject: `New Portfolio Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>

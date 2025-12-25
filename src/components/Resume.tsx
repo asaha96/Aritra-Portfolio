@@ -4,8 +4,8 @@ const Resume = () => {
   const highlights = ['Led data science workflows at NVIDIA AI Makerspace Nexus for HPC systems', 'Processed 100M+ BSMs for connected vehicle analytics and emergency response', 'Built Canvas LTI 1.3 app serving 5,000+ students with <200ms latency', 'Achieved 85% agreement with instructor grading using LLM evaluation', 'Reduced emergency decision time by ~30% through ML-driven dashboards', 'Software Engineering Intern at Siemens with full-stack development experience', 'Teaching Assistant for PSYC 3040 and Executive Director of SAILea', 'Expertise in Python, React, ML pipelines, cloud platforms, and accessibility'];
 
   // Google Drive embed URL for the resume
-  const resumeUrl = "https://drive.google.com/uc?id=1Wab9D7NAie5B-DRdYJKcAv158plP8KRo&export=download";
-  const resumeEmbedUrl = "https://drive.google.com/file/d/1Wab9D7NAie5B-DRdYJKcAv158plP8KRo/preview";
+  const resumeUrl = "https://drive.google.com/uc?id=1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_&export=download";
+  const resumeEmbedUrl = "https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/preview";
   return <section id="resume" className="section-padding">
       <div className="max-w-7xl mx-auto container-padding">
         <div className="space-y-8">

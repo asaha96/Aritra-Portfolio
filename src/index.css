@@ -147,9 +147,9 @@
     font-family: "Space Grotesk", system-ui, sans-serif;
     caret-color: hsl(var(--primary));
     background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.045) 1px, transparent 1px);
-    background-size: 72px 72px;
+      linear-gradient(to right, hsl(var(--foreground) / 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.028) 1px, transparent 1px);
+    background-size: 96px 96px;
     background-position: -1px -1px;
   }
 
@@ -195,6 +195,11 @@
     @apply font-mono text-xs tracking-[0.18em] text-muted-foreground;
   }
 
+  .chip {
+    @apply inline-flex items-center rounded-full border border-border/50 bg-muted/45 px-3 py-1;
+    @apply font-mono text-[0.65rem] tracking-[0.16em] text-muted-foreground;
+  }
+
   .section-title {
     @apply text-4xl sm:text-5xl lg:text-6xl;
   }
@@ -204,13 +209,13 @@
   }
 
   .card {
-    @apply bg-card border border-border rounded-2xl;
+    @apply bg-card/85 border border-border/55 rounded-2xl;
     box-shadow: var(--shadow-sm);
   }
 
   .card-floating {
-    @apply bg-card border border-border rounded-2xl;
-    box-shadow: var(--shadow-md);
+    @apply bg-card/90 border border-border/55 rounded-2xl;
+    box-shadow: var(--shadow-sm);
   }
 
   .cad-line {
@@ -251,18 +256,18 @@
   }
 
   .project-card {
-    @apply border border-border bg-card rounded-3xl p-6 lg:p-8;
-    box-shadow: var(--shadow-md);
+    @apply border border-border/60 bg-card/90 rounded-3xl p-5 lg:p-7;
+    box-shadow: var(--shadow-sm);
     transition: box-shadow var(--transition-base);
   }
 
   .project-card:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
   }
 
   .signal-card {
-    @apply rounded-2xl border border-border bg-background/70 p-4 text-sm;
-    box-shadow: var(--shadow-sm);
+    @apply rounded-2xl border border-border/55 bg-background/60 p-4 text-sm;
+    box-shadow: none;
   }
 
   .magnetic-card {
@@ -330,7 +335,7 @@
 
 .page-guides .line {
   position: absolute;
-  background: hsl(var(--foreground) / 0.18);
+  background: hsl(var(--foreground) / 0.1);
 }
 
 .page-guides .line.v1 {
@@ -366,7 +371,7 @@
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  border: 1px solid hsl(var(--foreground) / 0.3);
+  border: 1px solid hsl(var(--foreground) / 0.2);
   background: hsl(var(--background));
 }
 

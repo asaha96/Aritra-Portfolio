@@ -115,7 +115,7 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="card p-4 flex items-center gap-3 hover:shadow-md transition-shadow"
+                    className="card p-4 flex items-center gap-3 transition-colors hover:bg-card/95 hover:border-border/70"
                     aria-label={`Connect with Aritra on ${link.label}`}
                   >
                     <link.icon className="h-5 w-5 text-primary" />

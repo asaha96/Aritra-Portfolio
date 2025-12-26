@@ -130,7 +130,7 @@ const Portfolio = () => {
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {project.metrics.map((metric) => (
-                          <span key={metric} className="mono-chip border border-border/70 px-3 py-2 rounded-full text-[0.6rem]">
+                          <span key={metric} className="chip">
                             {metric}
                           </span>
                         ))}
@@ -164,7 +164,7 @@ const Portfolio = () => {
 
                       <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
-                          <span key={tag} className="mono-chip border border-border/70 px-3 py-2 rounded-full">
+                          <span key={tag} className="chip">
                             {tag}
                           </span>
                         ))}

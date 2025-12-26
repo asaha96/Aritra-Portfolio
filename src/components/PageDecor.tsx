@@ -5,7 +5,7 @@ const PageDecor = () => {
         <span className="glow one" />
         <span className="glow two" />
       </div>
-      <div className="page-guides">
+      <div className="page-guides hidden 2xl:block opacity-40">
         <span className="line v1" />
         <span className="line v2" />
         <span className="line h1" />

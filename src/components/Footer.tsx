@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <a
               href="mailto:asaha96@gatech.edu"
-              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 rounded-full bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Email Aritra Saha"
             >
               <Mail className="h-4 w-4" />
@@ -26,7 +26,7 @@ const Footer = () => {
               href="https://github.com/asaha96"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 rounded-full bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Aritra Saha's GitHub"
             >
               <Github className="h-4 w-4" />
@@ -35,7 +35,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/aritra-saha-522373261/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 rounded-full bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               aria-label="Aritra Saha's LinkedIn"
             >
               <Linkedin className="h-4 w-4" />

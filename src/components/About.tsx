@@ -54,14 +54,14 @@ const About = () => {
 
             <div className="flex flex-wrap gap-3">
               {focusAreas.map((area) => (
-                <span key={area} className="mono-chip border border-border/70 px-3 py-2 rounded-full">
+                <span key={area} className="chip">
                   {area}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5 lg:col-start-8 space-y-6 lg:-mt-12">
+          <div className="lg:col-span-5 lg:col-start-8 space-y-6 lg:-mt-6">
             <div className="card p-6 space-y-6">
               <div className="flex items-center gap-3">
                 <Compass className="h-5 w-5 text-primary" />

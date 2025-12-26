@@ -48,29 +48,25 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-6">
-            {principles.map((principle, index) => {
-              const colSpan = index % 2 === 0 ? "lg:col-span-7" : "lg:col-span-5";
-              const offset = index === 1 ? "lg:translate-y-8" : index === 2 ? "lg:-translate-y-6" : "";
-              return (
-                <div key={principle.title} className={`card p-6 space-y-4 ${colSpan} ${offset}`}>
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full border border-border/70 flex items-center justify-center">
-                      <principle.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold">{principle.title}</h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {principles.map((principle) => (
+              <div key={principle.title} className="card p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full border border-border/55 bg-background/40 flex items-center justify-center">
+                    <principle.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">{principle.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {principle.tags.map((tag) => (
-                      <span key={tag} className="mono-chip border border-border/70 px-3 py-2 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="text-xl font-semibold">{principle.title}</h3>
                 </div>
-              );
-            })}
+                <p className="text-sm text-muted-foreground">{principle.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {principle.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>

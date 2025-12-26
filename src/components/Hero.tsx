@@ -46,7 +46,7 @@ const Hero = () => {
           </div>
 
           <div className="lg:col-span-5 lg:col-start-8">
-            <div className="card-floating p-6 space-y-6 lg:-translate-y-8">
+            <div className="card-floating p-6 space-y-6 lg:-translate-y-4">
               <div className="space-y-2">
                 <p className="mono-label">Current</p>
                 <p className="text-base font-medium">BS/MS Computer Science at Georgia Tech</p>

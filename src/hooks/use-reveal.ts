@@ -13,46 +13,59 @@ const useReveal = <T extends HTMLElement>() => {
       return;
     }
 
-    // Fail open on environments where IntersectionObserver is unavailable or unreliable
-    // (some mobile browsers / embedded webviews). Otherwise `.reveal` stays invisible.
-    if (!("IntersectionObserver" in window)) {
-      node.classList.add("is-visible");
-      return;
-    }
-
     let didReveal = false;
+    let rafId = 0;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          didReveal = true;
-          node.classList.add("is-visible");
-          observer.disconnect();
-        }
-      },
-      {
-        // Trigger closer to when the user is about to see the element.
-        threshold: 0.2,
-        rootMargin: "0px 0px -25% 0px",
-      },
-    );
+    const revealNow = () => {
+      if (didReveal) return;
+      didReveal = true;
+      node.classList.add("is-visible");
+    };
 
-    observer.observe(node);
-
-    // Fail-open fallback, but only when the element is reasonably close to the viewport.
-    // This avoids revealing content far below the fold (which makes animations feel "too early").
-    const fallbackTimer = window.setTimeout(() => {
+    // Manual visibility check fallback (reliable on mobile). This prevents the "never reveals"
+    // failure mode even if IntersectionObserver is flaky.
+    const checkAndReveal = () => {
       if (didReveal) return;
       const rect = node.getBoundingClientRect();
-      const isNearViewport = rect.top < window.innerHeight * 1.25;
-      if (!isNearViewport) return;
-      node.classList.add("is-visible");
-      observer.disconnect();
-    }, 8000);
+      const nearViewport = rect.top < window.innerHeight * 0.92;
+      if (nearViewport) revealNow();
+    };
+
+    const onScrollOrResize = () => {
+      if (didReveal) return;
+      window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(checkAndReveal);
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    // Run once on mount.
+    checkAndReveal();
+
+    let observer: IntersectionObserver | null = null;
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            revealNow();
+            observer?.disconnect();
+          }
+        },
+        {
+          // Slightly earlier than the manual threshold, but not "way too early".
+          threshold: 0.12,
+          rootMargin: "0px 0px -15% 0px",
+        },
+      );
+
+      observer.observe(node);
+    }
 
     return () => {
-      window.clearTimeout(fallbackTimer);
-      observer.disconnect();
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      observer?.disconnect();
     };
   }, []);
 

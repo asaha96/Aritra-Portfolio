@@ -1,77 +1,83 @@
-import { ArrowRight, Download } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowUpRight } from "lucide-react";
+import useReveal from "@/hooks/use-reveal";
 
 const Hero = () => {
-  const skills = [
-    'Python', 'React', 'Canvas LTI', 'Pandas', 'Azure', 'HPC', 'Data Viz'
+  const introRef = useReveal<HTMLDivElement>();
+  const metricsRef = useReveal<HTMLDivElement>();
+
+  const metrics = [
+    { value: "100M+", label: "BSM records processed" },
+    { value: "5K+", label: "student users served" },
+    { value: "85%", label: "grading agreement" },
+    { value: "30%", label: "faster response decisions" },
   ];
 
-  const highlights = [
-    'Processed 100M+ BSMs for emergency response optimization',
-    'Achieved 85% agreement with instructor grading using LLM evaluation',
-    'Reduced emergency decision time by ~30% with ML analytics',
-    'Built systems serving 5,000+ students with <200ms p95 latency'
+  const now = [
+    { label: "Now", value: "BS/MS Computer Science at Georgia Tech" },
+    { label: "Labs", value: "ITS & CAV Lab + AI Makerspace" },
+    { label: "Focus", value: "HCI, AI, data systems" },
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center hero-gradient">
-      <div className="max-w-7xl mx-auto container-padding w-full">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="space-y-8">
+    <section id="home" className="section min-h-[85vh] flex items-center">
+      <div className="max-w-7xl mx-auto container-padding">
+        <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <div ref={introRef} className="lg:col-span-7 space-y-8 reveal">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                Technical builder.{' '}
-                <span className="text-gradient">UX minded.</span>{' '}
-                Data driven.
+              <p className="mono-label">Aritra Saha / Atlanta, GA</p>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[0.9] text-balance">
+                Building AI and data systems that feel inevitable to use.
               </h1>
-              
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-                I design and ship AI, data, and UX systems that solve clear problems and show measurable impact.
+              <p className="text-lg text-muted-foreground max-w-xl">
+                I design the pipeline, the interface, and the story between them. My work lives in
+                transportation, education, and privacy-first AI.
               </p>
             </div>
 
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild className="btn-hero">
-                <a href="#resume" aria-label="View resume section">
-                  <Download className="mr-2 h-5 w-5" />
-                  View Resume
-                </a>
-              </Button>
-              
-              <Button variant="outline" asChild className="btn-outline">
-                <a href="#portfolio" aria-label="View portfolio section">
-                  View Projects
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-
-            {/* Skills badges */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm font-medium"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-
-            {/* Highlights */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-foreground">Key Achievements</h3>
-              <ul className="space-y-2 max-w-2xl mx-auto text-left">
-                {highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                    <span className="text-muted-foreground">{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex flex-wrap gap-4">
+              <a href="#work" className="button-primary">
+                View selected work
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a href="#contact" className="button-ghost">
+                Start a collaboration
+              </a>
             </div>
           </div>
+
+          <div className="lg:col-span-5 lg:col-start-8">
+            <div className="card-floating p-6 space-y-6 lg:-translate-y-8">
+              <div className="space-y-2">
+                <p className="mono-label">Current</p>
+                <p className="text-base font-medium">BS/MS Computer Science at Georgia Tech</p>
+                <p className="text-sm text-muted-foreground">
+                  Human-centered AI, data systems, and applied research.
+                </p>
+              </div>
+              <div className="h-px bg-foreground/10" />
+              <div className="space-y-4">
+                {now.map((item) => (
+                  <div key={item.label} className="flex items-start gap-4">
+                    <span className="mono-label w-20 text-[0.65rem]">{item.label}</span>
+                    <p className="text-sm text-foreground">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          ref={metricsRef}
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 reveal"
+          style={{ transitionDelay: "120ms" }}
+        >
+          {metrics.map((metric) => (
+            <div key={metric.label} className="signal-card">
+              <p className="text-2xl font-semibold text-foreground">{metric.value}</p>
+              <p className="mono-label mt-2 text-[0.6rem]">{metric.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

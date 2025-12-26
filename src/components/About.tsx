@@ -1,141 +1,95 @@
-import { MapPin, Calendar, BookOpen, Code } from 'lucide-react';
+import { Compass, Layers, Sparkles } from "lucide-react";
+import useReveal from "@/hooks/use-reveal";
 
 const About = () => {
-  const quickFacts = [
+  const revealRef = useReveal<HTMLDivElement>();
+
+  const roles = [
     {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Atlanta, GA'
+      title: "ITS & CAV Lab",
+      role: "Research Assistant",
+      detail: "Connected vehicle analytics, emergency response pipelines, and data visualization.",
     },
     {
-      icon: BookOpen,
-      label: 'Current Role',
-      value: 'BS/MS Student at Georgia Tech'
+      title: "AI Makerspace Nexus",
+      role: "Data Science Lead",
+      detail: "HPC workflows, UI prototypes, and privacy-preserving AI tools for campus research.",
     },
     {
-      icon: Code,
-      label: 'Focus Areas',
-      value: 'HCI, AI, Data Systems'
+      title: "Canvas LTI Research",
+      role: "EdTech Builder",
+      detail: "AI-driven flashcards, grading support, and study tools for thousands of learners.",
     },
-    {
-      icon: Calendar,
-      label: 'Current Projects',
-      value: 'CV Analytics, EdTech Research'
-    }
   ];
 
-  const organizations = [
-    { name: 'Georgia Tech', type: 'Education' },
-    { name: 'Siemens', type: 'Industry Experience' },
-    { name: 'NVIDIA AI Makerspace', type: 'Research' },
-    { name: 'Canvas LTI', type: 'EdTech Platform' }
-  ];
+  const focusAreas = ["HCI", "Human-centered AI", "Data Systems", "ML Evaluation", "Visualization"];
 
   return (
-    <section id="about" className="section-padding bg-surface">
-      <div className="max-w-7xl mx-auto container-padding">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Bio Section */}
-          <div className="space-y-6">
+    <section id="profile" className="section bg-surface">
+      <div ref={revealRef} className="max-w-7xl mx-auto container-padding reveal">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7 space-y-6">
             <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-bold">About Me</h2>
-              <div className="w-16 h-1 bg-primary rounded-full" />
+              <p className="mono-label">Profile</p>
+              <h2 className="section-title">Designing systems with measurable impact.</h2>
+              <p className="section-lede">
+                I am a BS/MS Computer Science student at Georgia Tech focused on human-computer
+                interaction and AI. I care about systems that feel clear to use, honest in their
+                results, and stable at scale.
+              </p>
             </div>
-            
-            <div className="prose prose-lg max-w-none">
-              <p className="text-muted-foreground leading-relaxed">
-                I am a BS/MS Computer Science student at Georgia Tech focusing on Human–Computer Interaction and Artificial Intelligence. My work spans machine learning, data systems, and user-centered design, with a focus on building tools that are both intelligent and practical.
+
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                In the Intelligent Transportation Systems and CAV Lab, I build pipelines and
+                analytics for emergency response studies. At the NVIDIA AI Makerspace Nexus, I
+                lead data science workflows and interface work for high-performance computing.
               </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                I work in the Intelligent Transportation Systems and Connected & Autonomous Vehicle Lab, where I build large-scale data pipelines and analytics for traffic and emergency response studies. In the AI Makerspace Nexus, I lead data science workflows and develop interfaces for high-performance computing, including privacy-preserving AI tools used across campus.
+              <p>
+                I also contribute to educational technology research with Dr. David Joyner,
+                designing AI-driven tools for Canvas that help students study, practice, and get
+                feedback faster.
               </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                I also contribute to educational technology research with Dr. David Joyner, designing AI-driven flashcard, grading, and study tools for Canvas. Outside research, I serve as Executive Director of SAILea and as a teaching assistant for PSYC 3040.
-              </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                My interests span UX, ML, data engineering, and EdTech. I care about building usable, data-driven systems that create measurable impact for students, researchers, and organizations.
-              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {focusAreas.map((area) => (
+                <span key={area} className="mono-chip border border-border/70 px-3 py-2 rounded-full">
+                  {area}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Quick Facts & Timeline */}
-          <div className="space-y-8">
-            {/* Quick Facts Grid */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Quick Facts</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {quickFacts.map((fact, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
-                    <fact.icon className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">{fact.label}</p>
-                      <p className="font-medium text-foreground">{fact.value}</p>
-                    </div>
+          <div className="lg:col-span-5 lg:col-start-8 space-y-6 lg:-mt-12">
+            <div className="card p-6 space-y-6">
+              <div className="flex items-center gap-3">
+                <Compass className="h-5 w-5 text-primary" />
+                <h3 className="text-xl font-semibold">Current Nodes</h3>
+              </div>
+              <div className="space-y-4">
+                {roles.map((role) => (
+                  <div key={role.title} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                    <p className="mono-label text-[0.6rem]">{role.role}</p>
+                    <p className="font-medium text-foreground">{role.title}</p>
+                    <p className="text-sm text-muted-foreground">{role.detail}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Key Achievements */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Key Achievements</h3>
-              <div className="space-y-3">
-                <div className="p-4 bg-card rounded-lg border border-border">
-                  <h4 className="font-semibold text-foreground">ITS & CAV Lab Research Assistant</h4>
-                  <p className="text-sm text-muted-foreground">Processed 100M+ BSM records, reducing emergency decision time by 30%</p>
-                </div>
-                <div className="p-4 bg-card rounded-lg border border-border">
-                  <h4 className="font-semibold text-foreground">EdTech Research with Dr. David Joyner</h4>
-                  <p className="text-sm text-muted-foreground">Built AI-powered Canvas LTI app achieving 85% grading accuracy for 5K+ students</p>
-                </div>
-                <div className="p-4 bg-card rounded-lg border border-border">
-                  <h4 className="font-semibold text-foreground">AI Makerspace Nexus Lead</h4>
-                  <p className="text-sm text-muted-foreground">Lead data science workflows and UI development for HPC systems</p>
-                </div>
-                <div className="p-4 bg-card rounded-lg border border-border">
-                  <h4 className="font-semibold text-foreground">Executive Director, SAILea</h4>
-                  <p className="text-sm text-muted-foreground">Leading organizational strategy and operations for student AI learning community</p>
-                </div>
+            <div className="card p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <Layers className="h-5 w-5 text-primary" />
+                <h3 className="text-lg font-semibold">Leadership</h3>
               </div>
-            </div>
-
-            {/* Education Timeline */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Education</h3>
-              <div className="space-y-3">
-                <div className="border-l-2 border-primary pl-4 pb-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-primary rounded-full -ml-6" />
-                    <span className="text-sm text-muted-foreground">2025-2027</span>
-                  </div>
-                  <h4 className="font-semibold text-foreground">MS Computer Science</h4>
-                  <p className="text-muted-foreground">Georgia Institute of Technology • ML Concentration</p>
-                </div>
-                
-                <div className="border-l-2 border-primary pl-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-primary rounded-full -ml-6" />
-                    <span className="text-sm text-muted-foreground">2023-2026</span>
-                  </div>
-                  <h4 className="font-semibold text-foreground">BS Computer Science</h4>
-                  <p className="text-muted-foreground">Georgia Institute of Technology • HCI & AI Concentrations</p>
-                </div>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p>Executive Director, SAILea</p>
+                <p>Teaching Assistant, PSYC 3040</p>
               </div>
-            </div>
-
-            {/* Affiliations */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Affiliations</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {organizations.map((org, index) => (
-                  <div key={index} className="p-3 bg-accent rounded-lg text-center">
-                    <p className="font-medium text-accent-foreground text-sm">{org.name}</p>
-                    <p className="text-xs text-muted-foreground">{org.type}</p>
-                  </div>
-                ))}
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Sparkles className="h-4 w-4 text-primary" />
+                Building AI communities that make learning feel human.
               </div>
             </div>
           </div>

@@ -1,87 +1,137 @@
-import { Download, FileText, CheckCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowUpRight, Download, GraduationCap, Briefcase } from "lucide-react";
+import useReveal from "@/hooks/use-reveal";
 const Resume = () => {
-  const highlights = ['Led data science workflows at NVIDIA AI Makerspace Nexus for HPC systems', 'Processed 100M+ BSMs for connected vehicle analytics and emergency response', 'Built Canvas LTI 1.3 app serving 5,000+ students with <200ms latency', 'Achieved 85% agreement with instructor grading using LLM evaluation', 'Reduced emergency decision time by ~30% through ML-driven dashboards', 'Software Engineering Intern at Siemens with full-stack development experience', 'Teaching Assistant for PSYC 3040 and Executive Director of SAILea', 'Expertise in Python, React, ML pipelines, cloud platforms, and accessibility'];
+  const revealRef = useReveal<HTMLDivElement>();
 
-  // Google Drive embed URL for the resume
-  const resumeUrl = "https://drive.google.com/uc?id=1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_&export=download";
-  const resumeEmbedUrl = "https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/preview";
-  return <section id="resume" className="section-padding">
+  const resumeUrl = "/Aritra_Saha_Resume.pdf";
+
+  const experience = [
+    {
+      period: "Current",
+      role: "Research Assistant",
+      org: "ITS & CAV Lab",
+      detail: "Connected vehicle analytics, emergency response studies, and data pipelines.",
+    },
+    {
+      period: "Current",
+      role: "Data Science Lead",
+      org: "NVIDIA AI Makerspace Nexus",
+      detail: "HPC workflows, privacy-first AI tools, and interface prototypes.",
+    },
+    {
+      period: "Current",
+      role: "EdTech Research",
+      org: "Georgia Tech (Joyner)",
+      detail: "Canvas LTI tools for flashcards, grading support, and learning analytics.",
+    },
+    {
+      period: "Recent",
+      role: "Software Engineering Intern",
+      org: "Siemens",
+      detail: "Full-stack development with a focus on reliable, user-ready systems.",
+    },
+    {
+      period: "Current",
+      role: "Executive Director",
+      org: "SAILea",
+      detail: "Community leadership and program design for student AI learning.",
+    },
+    {
+      period: "Current",
+      role: "Teaching Assistant",
+      org: "PSYC 3040",
+      detail: "Supporting instruction and learner-centered course experiences.",
+    },
+  ];
+
+  const education = [
+    {
+      period: "2025-2027",
+      degree: "MS Computer Science",
+      focus: "Georgia Tech, ML concentration",
+    },
+    {
+      period: "2023-2026",
+      degree: "BS Computer Science",
+      focus: "Georgia Tech, HCI + AI concentrations",
+    },
+  ];
+
+  return (
+    <section id="experience" className="section">
       <div className="max-w-7xl mx-auto container-padding">
-        <div className="space-y-8">
-          {/* Header */}
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl lg:text-4xl font-bold">Resume</h2>
-            <div className="w-16 h-1 bg-primary rounded-full mx-auto" />
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive overview of my experience in AI, data systems, and educational technology
+        <div ref={revealRef} className="space-y-12 reveal">
+          <div className="space-y-4 max-w-3xl">
+            <p className="mono-label">Experience</p>
+            <h2 className="section-title">Work across research, industry, and education.</h2>
+            <p className="section-lede">
+              A mix of lab research, AI product work, and teaching roles that keep me close to
+              real users and real constraints.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Resume Embed */}
-            <div className="space-y-6">
-              <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-                <div className="flex items-center space-x-3">
-                  <FileText className="h-6 w-6 text-primary" />
-                  <h3 className="text-xl font-semibold">Aritra Saha Resume</h3>
-                </div>
-                
-                {/* PDF Embed */}
-                <div className="bg-surface rounded-lg border border-border overflow-hidden">
-                  <iframe src={resumeEmbedUrl} className="w-full h-[600px]" title="Aritra Saha Resume" aria-label="Aritra Saha's resume document" />
-                  <div className="p-4 text-center border-t border-border">
-                    <p className="text-sm text-muted-foreground">
-                      Full resume with detailed experience, education, and project information
-                    </p>
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="border-l border-foreground/20 pl-6 space-y-6">
+                {experience.map((item) => (
+                  <div key={item.org} className="space-y-2">
+                    <p className="mono-label text-[0.6rem]">{item.period}</p>
+                    <div className="flex items-start gap-3">
+                      <Briefcase className="h-4 w-4 text-primary mt-1" />
+                      <div>
+                        <p className="font-medium text-foreground">{item.role}</p>
+                        <p className="text-sm text-muted-foreground">{item.org}</p>
+                        <p className="text-sm text-muted-foreground">{item.detail}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                {/* Download Button */}
-                <Button asChild className="w-full btn-hero">
-                  <a href={resumeUrl} download="Aritra_Saha_Resume.pdf" aria-label="Download Aritra Saha's resume as PDF">
-                    <Download className="mr-2 h-5 w-5" />
-                    Download Resume
-                  </a>
-                </Button>
-                
-                <p className="text-xs text-muted-foreground text-center">
-                  Optimized for ATS systems and screen readers
-                </p>
+                ))}
               </div>
             </div>
 
-            {/* Key Highlights */}
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Key Highlights</h3>
-                <p className="text-muted-foreground">
-                  Measurable outcomes and technical achievements across research, industry, and education
+            <div className="lg:col-span-5 space-y-6">
+              <div className="card p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  <h3 className="text-xl font-semibold">Education</h3>
+                </div>
+                <div className="space-y-4">
+                  {education.map((item) => (
+                    <div key={item.degree} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                      <p className="mono-label text-[0.6rem]">{item.period}</p>
+                      <p className="font-medium text-foreground">{item.degree}</p>
+                      <p className="text-sm text-muted-foreground">{item.focus}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="card p-6 space-y-4">
+                <p className="mono-label">Resume</p>
+                <p className="text-sm text-muted-foreground">
+                  One-page snapshot with the full project list, publications, and tools.
                 </p>
-              </div>
-
-              <div className="space-y-4">
-                {highlights.map((highlight, index) => <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground leading-relaxed">{highlight}</p>
-                  </div>)}
-              </div>
-
-              {/* Additional Info */}
-              <div className="mt-8 p-4 bg-accent rounded-lg">
-                <h4 className="font-semibold text-accent-foreground mb-2">Technical Skills Summary</h4>
-                <div className="text-sm text-muted-foreground space-y-1">
-                  <p><strong>Languages:</strong> Python, Java, JavaScript, SQL, C</p>
-                  <p><strong>Frameworks:</strong> React, Node.js, TensorFlow, PyTorch</p>
-                  <p><strong>Data & ML:</strong> Pandas, NumPy, Scikit-learn, OpenCV</p>
-                  <p><strong>Cloud & Tools:</strong> AWS, Azure, Docker, Git, REST APIs</p>
-                  <p><strong>Specialties:</strong> HCI, Educational Technology, Data Visualization</p>
+                <div className="flex flex-wrap gap-3">
+                  <a href={resumeUrl} className="button-primary" download>
+                    Download PDF
+                    <Download className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-ghost"
+                  >
+                    View in new tab
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default Resume;

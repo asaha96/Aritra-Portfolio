@@ -1,53 +1,23 @@
-import { Heart, Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-background py-12">
+    <footer className="border-t border-border/70 py-10">
       <div className="max-w-7xl mx-auto container-padding">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Brand */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold">Aritra Saha</h3>
-            <p className="text-background/70 text-sm">
-              Building AI and data systems that create measurable impact
+            <p className="font-display text-2xl">Aritra Saha</p>
+            <p className="text-sm text-muted-foreground">
+              AI, data systems, and interfaces that ship with intent.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-wrap gap-6 justify-center">
-            <a 
-              href="#about" 
-              className="text-background/70 hover:text-background transition-colors text-sm"
-            >
-              About
-            </a>
-            <a 
-              href="#resume" 
-              className="text-background/70 hover:text-background transition-colors text-sm"
-            >
-              Resume
-            </a>
-            <a 
-              href="#portfolio" 
-              className="text-background/70 hover:text-background transition-colors text-sm"
-            >
-              Portfolio
-            </a>
-            <a 
-              href="#contact" 
-              className="text-background/70 hover:text-background transition-colors text-sm"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center justify-end space-x-4">
+          <div className="flex items-center gap-3">
             <a
               href="mailto:asaha96@gatech.edu"
-              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Email Aritra Saha"
             >
               <Mail className="h-4 w-4" />
@@ -56,7 +26,7 @@ const Footer = () => {
               href="https://github.com/asaha96"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Aritra Saha's GitHub"
             >
               <Github className="h-4 w-4" />
@@ -65,7 +35,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/aritra-saha-522373261/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-background/10 hover:bg-background/20 rounded-lg transition-colors"
+              className="p-2 border border-border/70 rounded-full text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Aritra Saha's LinkedIn"
             >
               <Linkedin className="h-4 w-4" />
@@ -73,15 +43,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-background/20">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-background/70 text-sm">
-              © {currentYear} Aritra Saha. Built with React, TypeScript, and Tailwind CSS.
-            </p>
-            <p className="text-background/70 text-sm flex items-center">
-              Made with <Heart className="h-4 w-4 mx-1 text-red-400" /> at Georgia Tech
-            </p>
-          </div>
+        <div className="mt-8 pt-6 border-t border-border/60 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            © {currentYear} Aritra Saha. Built with React, TypeScript, and Tailwind CSS.
+          </p>
+          <p className="mono-label text-[0.6rem]">Atlanta, GA</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
-import { ExternalLink, Github, FileText } from "lucide-react";
-import MagneticCard from "@/components/MagneticCard";
+import { useState } from "react";
+import { ChevronDown, ChevronUp, ExternalLink, Github, FileText } from "lucide-react";
 import useReveal from "@/hooks/use-reveal";
 import vehicleTrajectory from "@/assets/vehicle-trajectory.png";
 import leitFlashcards from "@/assets/leit-flashcards.png";
@@ -8,6 +8,12 @@ import atlmetrovisImage from "@/assets/atlmetrovis.png";
 
 const Portfolio = () => {
   const revealRef = useReveal<HTMLDivElement>();
+  const [openProjectId, setOpenProjectId] = useState<number | null>(null);
+
+  const getFirstSentence = (text: string) => {
+    const match = text.trim().match(/^(.+?[.!?])(\s|$)/);
+    return match ? match[1] : text;
+  };
 
   const projects = [
     {
@@ -142,8 +148,10 @@ const Portfolio = () => {
           <div className="space-y-10">
             {projects.map((project, index) => {
               const reversed = index % 2 === 1;
+              const isOpen = openProjectId === project.id;
+              const description = isOpen ? project.description : getFirstSentence(project.description);
               return (
-                <MagneticCard key={project.id} className="project-card group">
+                <div key={project.id} className="project-card group">
                   <div className="grid lg:grid-cols-12 gap-8 items-start lg:items-center">
                     <div
                       className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
@@ -181,29 +189,55 @@ const Portfolio = () => {
                       <h3 className="text-3xl lg:text-4xl font-semibold text-foreground">
                         {project.title}
                       </h3>
-                      <p className="text-muted-foreground">{project.description}</p>
+                      <p className="text-muted-foreground">{description}</p>
 
-                      <div className="border-t border-foreground/10 pt-4 text-sm md:border-t-0 md:pt-0 md:border-l-2 md:border-foreground/20 md:pl-4">
-                        <p className="mono-label text-[0.6rem]">Impact</p>
-                        <p className="text-foreground">{project.impact}</p>
+                      <p className="text-sm text-muted-foreground">
+                        <span className="mono-label mr-2 text-[0.6rem]">Impact</span>
+                        <span className="text-foreground">{project.impact}</span>
+                      </p>
+
+                      <div className="flex flex-wrap gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setOpenProjectId(isOpen ? null : project.id)}
+                          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground link-underline"
+                          aria-expanded={isOpen}
+                          aria-controls={`project-details-${project.id}`}
+                        >
+                          {isOpen ? (
+                            <>
+                              <ChevronUp className="h-4 w-4" />
+                              Hide details
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDown className="h-4 w-4" />
+                              View details
+                            </>
+                          )}
+                        </button>
                       </div>
 
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        {project.highlights.map((highlight) => (
-                          <li key={highlight} className="flex items-start gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {isOpen && (
+                        <div id={`project-details-${project.id}`} className="space-y-5">
+                          <ul className="space-y-2 text-sm text-muted-foreground">
+                            {project.highlights.map((highlight) => (
+                              <li key={highlight} className="flex items-start gap-2">
+                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
+                                <span>{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
 
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="chip">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span key={tag} className="chip">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       <div className="flex flex-wrap gap-4 text-sm">
                         {project.links.dashboard && (
@@ -264,7 +298,7 @@ const Portfolio = () => {
                       </div>
                     </div>
                   </div>
-                </MagneticCard>
+                </div>
               );
             })}
           </div>

@@ -31,19 +31,24 @@ const useReveal = <T extends HTMLElement>() => {
         }
       },
       {
-        // Trigger a bit earlier to avoid "never revealed" edge cases on small screens.
-        threshold: 0.1,
-        rootMargin: "0px 0px -10% 0px",
+        // Trigger closer to when the user is about to see the element.
+        threshold: 0.2,
+        rootMargin: "0px 0px -25% 0px",
       },
     );
 
     observer.observe(node);
 
+    // Fail-open fallback, but only when the element is reasonably close to the viewport.
+    // This avoids revealing content far below the fold (which makes animations feel "too early").
     const fallbackTimer = window.setTimeout(() => {
       if (didReveal) return;
+      const rect = node.getBoundingClientRect();
+      const isNearViewport = rect.top < window.innerHeight * 1.25;
+      if (!isNearViewport) return;
       node.classList.add("is-visible");
       observer.disconnect();
-    }, 1200);
+    }, 8000);
 
     return () => {
       window.clearTimeout(fallbackTimer);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
+import { ArrowUpRight, Mail, Github, Linkedin, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -115,14 +115,17 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="card p-4 flex items-center gap-3 transition-colors hover:bg-card/95 hover:border-border/70"
+                    className="group card p-4 flex items-center justify-between gap-4 cursor-pointer transition hover:-translate-y-0.5 hover:bg-card/95 hover:border-border/70 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     aria-label={`Connect with Aritra on ${link.label}`}
                   >
-                    <link.icon className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="font-medium text-foreground">{link.label}</p>
-                      <p className="text-sm text-muted-foreground">{link.description}</p>
+                    <div className="flex items-center gap-3">
+                      <link.icon className="h-5 w-5 text-primary" />
+                      <div>
+                        <p className="font-medium text-foreground">{link.label}</p>
+                        <p className="text-sm text-muted-foreground">{link.description}</p>
+                      </div>
                     </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
                   </a>
                 ))}
               </div>

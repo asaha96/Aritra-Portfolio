@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const heroEndY = useRef(0);
 
   const navItems = [
     { href: '#work', label: 'Work' },
@@ -11,8 +14,50 @@ const Navigation = () => {
     { href: '#contact', label: 'Contact' },
   ];
 
+  useEffect(() => {
+    const updateHeroEnd = () => {
+      const hero = document.getElementById("home");
+      if (!hero) {
+        heroEndY.current = 420;
+        return;
+      }
+      const rect = hero.getBoundingClientRect();
+      heroEndY.current = window.scrollY + rect.top + rect.height - 72;
+    };
+
+    updateHeroEnd();
+    window.addEventListener("resize", updateHeroEnd);
+    return () => window.removeEventListener("resize", updateHeroEnd);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const goingDown = y > lastScrollY.current;
+      const pastHero = y > heroEndY.current;
+
+      if (!pastHero) {
+        setIsHidden(false);
+      } else {
+        setIsHidden(goingDown);
+        if (goingDown) setIsOpen(false);
+      }
+
+      lastScrollY.current = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full bg-background/85 backdrop-blur-md border-b border-border/60 z-50">
+    <nav
+      className={[
+        "fixed top-0 w-full bg-background/85 backdrop-blur-md border-b border-border/60 z-50",
+        "transition-transform duration-300",
+        isHidden ? "-translate-y-full pointer-events-none" : "translate-y-0",
+      ].join(" ")}
+    >
       {/* Skip to content link for accessibility */}
       <a 
         href="#main-content" 
@@ -45,7 +90,6 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
-            <span className="mono-label hidden xl:inline">Atlanta, GA</span>
             <ThemeToggle />
             <a
               href="https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/view?usp=sharing"

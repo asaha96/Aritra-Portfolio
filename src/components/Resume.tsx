@@ -1,9 +1,8 @@
-import { ArrowUpRight, Download, GraduationCap, Briefcase } from "lucide-react";
+import { GraduationCap, Briefcase } from "lucide-react";
+import { motion } from "motion/react";
 import useReveal from "@/hooks/use-reveal";
 const Resume = () => {
   const revealRef = useReveal<HTMLDivElement>();
-
-  const resumeUrl = "https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/view?usp=sharing";
 
   const experience = [
     {
@@ -58,8 +57,19 @@ const Resume = () => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-6 md:border-l md:border-foreground/20 md:pl-6">
-                {experience.map((item) => (
-                  <div key={item.org} className="space-y-2">
+                {experience.map((item, index) => (
+                  <motion.div
+                    key={`${item.org}-${item.role}`}
+                    className="space-y-2"
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35, margin: "0px 0px -20% 0px" }}
+                    transition={{
+                      duration: 0.55,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: index * 0.09,
+                    }}
+                  >
                     <p className="mono-label text-[0.6rem]">{item.period}</p>
                     <div className="flex items-start gap-3">
                       <Briefcase className="h-4 w-4 text-primary mt-1" />
@@ -69,7 +79,7 @@ const Resume = () => {
                         <p className="text-sm text-muted-foreground">{item.detail}</p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -88,31 +98,6 @@ const Resume = () => {
                       <p className="text-sm text-muted-foreground">{item.focus}</p>
                     </div>
                   ))}
-                </div>
-              </div>
-
-              <div className="card p-6 space-y-4">
-                <p className="mono-label">Resume</p>
-                <p className="text-sm text-muted-foreground">
-                  One-page snapshot with the full project list, publications, and tools.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <a 
-                    href="https://drive.google.com/uc?export=download&id=1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_" 
-                    className="button-primary"
-                  >
-                    Download PDF
-                    <Download className="h-4 w-4" />
-                  </a>
-                  <a
-                    href={resumeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-ghost"
-                  >
-                    View in new tab
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
                 </div>
               </div>
             </div>

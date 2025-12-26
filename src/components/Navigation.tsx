@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +48,9 @@ const Navigation = () => {
               </a>
             ))}
             <span className="mono-label hidden xl:inline">Atlanta, GA</span>
+            <ThemeToggle />
             <a
-              href="/Aritra_Saha_Resume.pdf"
+              href="https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/view?usp=sharing"
               className="button-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -88,15 +90,18 @@ const Navigation = () => {
                 </a>
               ))}
             </div>
-            <a
-              href="/Aritra_Saha_Resume.pdf"
-              className="button-primary w-fit"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Resume
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <a
+                href="https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/view?usp=sharing"
+                className="button-primary w-fit"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Resume
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         )}
       </div>

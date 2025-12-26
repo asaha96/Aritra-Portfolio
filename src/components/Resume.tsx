@@ -3,7 +3,7 @@ import useReveal from "@/hooks/use-reveal";
 const Resume = () => {
   const revealRef = useReveal<HTMLDivElement>();
 
-  const resumeUrl = "/Aritra_Saha_Resume.pdf";
+  const resumeUrl = "https://drive.google.com/file/d/1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_/view?usp=sharing";
 
   const experience = [
     {
@@ -112,7 +112,10 @@ const Resume = () => {
                   One-page snapshot with the full project list, publications, and tools.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <a href={resumeUrl} className="button-primary" download>
+                  <a 
+                    href="https://drive.google.com/uc?export=download&id=1kZSNtotDEGhUF048QgLn5tU8EM9Z2PH_" 
+                    className="button-primary"
+                  >
                     Download PDF
                     <Download className="h-4 w-4" />
                   </a>

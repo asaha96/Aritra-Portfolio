@@ -21,8 +21,8 @@ const Hero = () => {
   return (
     <section id="home" className="section min-h-[85vh] flex items-center">
       <div className="max-w-7xl mx-auto container-padding">
-        <div className="grid lg:grid-cols-12 gap-10 items-end">
-          <div ref={introRef} className="lg:col-span-7 space-y-8 reveal">
+        <div className="grid lg:grid-cols-12 gap-10 items-start lg:items-end">
+          <div ref={introRef} className="lg:col-span-7 space-y-6 sm:space-y-8 reveal">
             <div className="space-y-4">
               <p className="mono-label">Aritra Saha / Atlanta, GA</p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[0.9] text-balance">

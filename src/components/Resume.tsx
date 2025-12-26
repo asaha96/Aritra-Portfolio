@@ -55,9 +55,9 @@ const Resume = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-7 space-y-6">
-              <div className="border-l border-foreground/20 pl-6 space-y-6">
+              <div className="space-y-6 md:border-l md:border-foreground/20 md:pl-6">
                 {experience.map((item) => (
                   <div key={item.org} className="space-y-2">
                     <p className="mono-label text-[0.6rem]">{item.period}</p>

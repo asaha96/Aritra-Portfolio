@@ -144,7 +144,7 @@ const Portfolio = () => {
               const reversed = index % 2 === 1;
               return (
                 <MagneticCard key={project.id} className="project-card group">
-                  <div className="grid lg:grid-cols-12 gap-8 items-center">
+                  <div className="grid lg:grid-cols-12 gap-8 items-start lg:items-center">
                     <div
                       className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
@@ -183,7 +183,7 @@ const Portfolio = () => {
                       </h3>
                       <p className="text-muted-foreground">{project.description}</p>
 
-                      <div className="border-l-2 border-foreground/20 pl-4 text-sm">
+                      <div className="border-t border-foreground/10 pt-4 text-sm md:border-t-0 md:pt-0 md:border-l-2 md:border-foreground/20 md:pl-4">
                         <p className="mono-label text-[0.6rem]">Impact</p>
                         <p className="text-foreground">{project.impact}</p>
                       </div>

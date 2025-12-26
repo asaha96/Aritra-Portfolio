@@ -5,6 +5,7 @@ import Resume from '@/components/Resume';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import PageDecor from '@/components/PageDecor';
+import SkillsOrbit from '@/components/SkillsOrbit';
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <main id="main-content" className="relative overflow-hidden">
         <PageDecor />
         <Hero />
+        <SkillsOrbit />
         <Resume />
         <Portfolio />
         <Contact />

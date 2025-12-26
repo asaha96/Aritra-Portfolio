@@ -1,7 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+
+
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -38,24 +39,38 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Send email to Aritra
-    const emailResponse = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["aritras059@gmail.com"],
-      subject: `New Portfolio Message from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-        <hr>
-        <p style="color: #666; font-size: 12px;">This message was sent from your portfolio website contact form.</p>
-      `,
-      replyTo: email,
+    // Send email to Aritra using Resend API
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Portfolio Contact <onboarding@resend.dev>",
+        to: ["aritras059@gmail.com"],
+        subject: `New Portfolio Message from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message.replace(/\n/g, "<br>")}</p>
+          <hr>
+          <p style="color: #666; font-size: 12px;">This message was sent from your portfolio website contact form.</p>
+        `,
+        reply_to: email,
+      }),
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    const responseData = await emailResponse.json();
+    
+    if (!emailResponse.ok) {
+      console.error("Resend API error:", responseData);
+      throw new Error(responseData.message || "Failed to send email");
+    }
+
+    console.log("Email sent successfully:", responseData);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

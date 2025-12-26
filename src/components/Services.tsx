@@ -73,14 +73,6 @@ const Services = () => {
             })}
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <p className="text-muted-foreground">
-              Ready to build something bold with measurable outcomes?
-            </p>
-            <a href="#contact" className="button-primary">
-              Start a conversation
-            </a>
-          </div>
         </div>
       </div>
     </section>

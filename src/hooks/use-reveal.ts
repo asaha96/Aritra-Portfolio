@@ -13,19 +13,42 @@ const useReveal = <T extends HTMLElement>() => {
       return;
     }
 
+    // Fail open on environments where IntersectionObserver is unavailable or unreliable
+    // (some mobile browsers / embedded webviews). Otherwise `.reveal` stays invisible.
+    if (!("IntersectionObserver" in window)) {
+      node.classList.add("is-visible");
+      return;
+    }
+
+    let didReveal = false;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          didReveal = true;
           node.classList.add("is-visible");
           observer.disconnect();
         }
       },
-      { threshold: 0.2 },
+      {
+        // Trigger a bit earlier to avoid "never revealed" edge cases on small screens.
+        threshold: 0.1,
+        rootMargin: "0px 0px -10% 0px",
+      },
     );
 
     observer.observe(node);
 
-    return () => observer.disconnect();
+    const fallbackTimer = window.setTimeout(() => {
+      if (didReveal) return;
+      node.classList.add("is-visible");
+      observer.disconnect();
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, []);
 
   return ref;

@@ -3,7 +3,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
 import { PanelLeft } from "lucide-react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +10,10 @@ import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
+const MOBILE_MEDIA_QUERY = "(max-width: 767px)";
+const getIsMobile = () =>
+  typeof window !== "undefined" && "matchMedia" in window && window.matchMedia(MOBILE_MEDIA_QUERY).matches;
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -48,7 +51,7 @@ const SidebarProvider = React.forwardRef<
     onOpenChange?: (open: boolean) => void;
   }
 >(({ defaultOpen = true, open: openProp, onOpenChange: setOpenProp, className, style, children, ...props }, ref) => {
-  const isMobile = useIsMobile();
+  const isMobile = getIsMobile();
   const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.
@@ -72,8 +75,8 @@ const SidebarProvider = React.forwardRef<
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
-  }, [isMobile, setOpen, setOpenMobile]);
+    return getIsMobile() ? setOpenMobile((open) => !open) : setOpen((open) => !open);
+  }, [setOpen, setOpenMobile]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {

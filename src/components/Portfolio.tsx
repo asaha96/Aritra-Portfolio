@@ -53,6 +53,33 @@ const Portfolio = () => {
       },
     },
     {
+      id: 5,
+      title: "Layout AI",
+      subtitle: "Layout, Professional Floor Plan Design Platform",
+      image: "/lovable-uploads/original.jpg",
+      imageClassName: "scale-[1.12]",
+      imageHoverClassName: "group-hover:scale-[1.18]",
+      imageAlt: "Layout AI web-based floor plan editor interface",
+      description:
+        "Built at HackGT. AI powered floor plan editor with real time collaboration and intelligent design assistance. A web based floor plan design platform with CAD like precision, Figma like canvas interactions, and an AI assistant for layout creation and suggestions.",
+      impact:
+        "Helps architects and designers create detailed layouts faster with guided placement, automated generation, and collaborative editing.",
+      highlights: [
+        "Built a Konva powered 2D canvas with smooth zoom, pan, multi select, and snapping.",
+        "Implemented CAD like tools for walls, dimensions, and precise placement with a snap manager.",
+        "Added an AI assistant with natural language commands, suggestions, and automated layout generation.",
+        "Enabled real time collaboration with live updates, roles, and shareable links using Supabase.",
+        "Shipped plan management with versioning and revision history.",
+      ],
+      metrics: ["HackGT", "Real time collab", "AI assisted layout"],
+      tags: ["Next.js 15", "React 19", "TypeScript", "Tailwind", "Konva", "Supabase", "OpenAI", "Mastra", "SQLite", "Zod"],
+      links: {
+        demo: "https://drive.google.com/file/d/1EijsEQ0MvyZTbC2yIkp7yWwKjCDIaR8N/view?usp=sharing",
+        devpost: "https://devpost.com/software/layout-ai",
+        repo: "https://github.com/Sectonic/Vene",
+      },
+    },
+    {
       id: 3,
       title: "ChatGT - Local AI Study Assistant",
       subtitle: "Privacy-first AI",
@@ -91,6 +118,7 @@ const Portfolio = () => {
       metrics: ["538 cities", "5 years data", "2 datasets"],
       tags: ["Tableau", "Python", "Pandas", "Geospatial Analysis"],
       links: {
+        dashboard: "https://drive.google.com/file/d/1eGMIeuGIRABQVb8C2lTqlN2vMjkucv29/view?usp=sharing",
         demo: "https://drive.google.com/file/d/1JIbJbD8Is26EcSnW3WfA1zLrAnCyGgE7/view?usp=sharing",
         writeup:
           "https://docs.google.com/document/d/14j6O590rOv84XYtV5HQhU37G1FThFgIaNa9CXxckbX8/edit?usp=sharing",
@@ -124,8 +152,15 @@ const Portfolio = () => {
                         <img
                           src={project.image}
                           alt={project.imageAlt}
-                          className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className={`w-full object-cover transition-transform duration-500 ${
+                            project.imageClassName ?? ""
+                          } ${project.imageHoverClassName ?? "group-hover:scale-105"}`}
                           loading="lazy"
+                          onError={(e) => {
+                            // Prevent broken-image UI if a local public/ asset is missing.
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "/placeholder.svg";
+                          }}
                         />
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
@@ -171,6 +206,17 @@ const Portfolio = () => {
                       </div>
 
                       <div className="flex flex-wrap gap-4 text-sm">
+                        {project.links.dashboard && (
+                          <a
+                            href={project.links.dashboard}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            Dashboard
+                          </a>
+                        )}
                         {project.links.demo && (
                           <a
                             href={project.links.demo}
@@ -180,6 +226,17 @@ const Portfolio = () => {
                           >
                             <ExternalLink className="h-4 w-4" />
                             Demo
+                          </a>
+                        )}
+                        {project.links.devpost && (
+                          <a
+                            href={project.links.devpost}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            Devpost
                           </a>
                         )}
                         {project.links.repo && (

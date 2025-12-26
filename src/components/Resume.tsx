@@ -7,40 +7,25 @@ const Resume = () => {
 
   const experience = [
     {
-      period: "Current",
-      role: "Research Assistant",
-      org: "ITS & CAV Lab",
-      detail: "Connected vehicle analytics, emergency response studies, and data pipelines.",
-    },
-    {
-      period: "Current",
-      role: "Data Science Lead",
-      org: "NVIDIA AI Makerspace Nexus",
-      detail: "HPC workflows, privacy-first AI tools, and interface prototypes.",
-    },
-    {
-      period: "Current",
-      role: "EdTech Research",
-      org: "Georgia Tech (Joyner)",
-      detail: "Canvas LTI tools for flashcards, grading support, and learning analytics.",
-    },
-    {
       period: "Recent",
       role: "Software Engineering Intern",
       org: "Siemens",
-      detail: "Full-stack development with a focus on reliable, user-ready systems.",
+      detail:
+        "Full-stack feature delivery, testing/QA, and shipping improvements that held up in production.",
     },
     {
       period: "Current",
       role: "Executive Director",
       org: "SAILea",
-      detail: "Community leadership and program design for student AI learning.",
+      detail:
+        "Program design, operations, and community leadership for student AI learning initiatives.",
     },
     {
       period: "Current",
       role: "Teaching Assistant",
       org: "PSYC 3040",
-      detail: "Supporting instruction and learner-centered course experiences.",
+      detail:
+        "Course support via office hours, feedback, and learner-facing materials focused on clarity and outcomes.",
     },
   ];
 
@@ -63,10 +48,10 @@ const Resume = () => {
         <div ref={revealRef} className="space-y-12 reveal">
           <div className="space-y-4 max-w-3xl">
             <p className="mono-label">Experience</p>
-            <h2 className="section-title">Work across research, industry, and education.</h2>
+            <h2 className="section-title">Work outside the case studies.</h2>
             <p className="section-lede">
-              A mix of lab research, AI product work, and teaching roles that keep me close to
-              real users and real constraints.
+              Non-project work: internships, leadership, and teaching focused on shipping and
+              community outcomes.
             </p>
           </div>
 

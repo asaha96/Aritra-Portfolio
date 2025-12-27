@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import useReveal from "@/hooks/use-reveal";
 
@@ -129,16 +129,31 @@ const SkillsOrbit = () => {
   const revealRef = useReveal<HTMLDivElement>();
   const [hovered, setHovered] = useState<Tech | null>(null);
   const [focusMode, setFocusMode] = useState(false);
+  const [orbitSize, setOrbitSize] = useState(ORBIT_SIZE);
 
-  const center = ORBIT_SIZE / 2;
+  useEffect(() => {
+    const update = () => {
+      // Fit within the viewport on mobile (account for container padding).
+      const padding = 48; // ~ 24px left + 24px right
+      const next = Math.min(ORBIT_SIZE, Math.max(280, window.innerWidth - padding));
+      setOrbitSize(next);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const orbitRadius = (ORBIT_RADIUS / ORBIT_SIZE) * orbitSize;
+  const center = orbitSize / 2;
   const points = useMemo(() => {
     return techStack.map((tech, index) => {
       const theta = (index / techStack.length) * Math.PI * 2 - Math.PI / 2;
-      const x = Math.cos(theta) * ORBIT_RADIUS;
-      const y = Math.sin(theta) * ORBIT_RADIUS;
+      const x = Math.cos(theta) * orbitRadius;
+      const y = Math.sin(theta) * orbitRadius;
       return { tech, x, y };
     });
-  }, []);
+  }, [orbitRadius]);
 
   return (
     <section className="section pt-12 lg:pt-16">
@@ -169,7 +184,7 @@ const SkillsOrbit = () => {
               <motion.div
                 aria-label="Rotating skills orbit"
                 className="relative select-none"
-                style={{ width: ORBIT_SIZE, height: ORBIT_SIZE }}
+                style={{ width: orbitSize, height: orbitSize }}
                 animate={{ rotate: 360 }}
                 transition={{
                   duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
@@ -180,9 +195,9 @@ const SkillsOrbit = () => {
               {/* Lines */}
               <svg
                 className="absolute inset-0"
-                width={ORBIT_SIZE}
-                height={ORBIT_SIZE}
-                viewBox={`0 0 ${ORBIT_SIZE} ${ORBIT_SIZE}`}
+                width={orbitSize}
+                height={orbitSize}
+                viewBox={`0 0 ${orbitSize} ${orbitSize}`}
                 aria-hidden="true"
               >
                 {points.map(({ tech, x, y }) => (
@@ -235,7 +250,7 @@ const SkillsOrbit = () => {
                     rel="noreferrer"
                     aria-label={`Open ${tech.name}`}
                     title={`Open ${tech.name}`}
-                    className="group block h-12 w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
+                    className="group block h-10 w-10 sm:h-12 sm:w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
                     // Counter-rotate so icons don't spin while the orbit container rotates.
                     animate={{ rotate: -360 }}
                     transition={{
@@ -258,12 +273,12 @@ const SkillsOrbit = () => {
                         <img
                           src={tech.iconUrl}
                           alt=""
-                          className={tech.iconClassName ?? "h-7 w-7"}
+                          className={tech.iconClassName ?? "h-6 w-6 sm:h-7 sm:w-7"}
                           loading="lazy"
                           draggable={false}
                         />
                       ) : (
-                        <div className="h-7 w-7 flex items-center justify-center font-mono text-[0.65rem] tracking-[0.22em] text-muted-foreground">
+                        <div className="h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center font-mono text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] text-muted-foreground">
                           {tech.label ?? tech.name}
                         </div>
                       )}

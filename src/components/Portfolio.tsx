@@ -231,7 +231,7 @@ const Portfolio = () => {
                           <img
                             src={project.image}
                             alt={project.imageAlt}
-                            className={`w-full object-cover transition-transform duration-500 ${
+                            className={`w-full object-cover object-center origin-center transition-transform duration-500 ${
                               project.imageClassName ?? ""
                             } ${project.imageHoverClassName ?? "group-hover:scale-105"}`}
                             loading="lazy"
@@ -397,7 +397,7 @@ const Portfolio = () => {
                   <img
                     src={modalProject.image}
                     alt={modalProject.imageAlt}
-                    className={`w-full object-cover ${modalProject.imageClassName ?? ""}`}
+                    className={`w-full object-cover object-center origin-center ${modalProject.imageClassName ?? ""}`}
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;

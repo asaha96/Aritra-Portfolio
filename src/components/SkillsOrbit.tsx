@@ -128,7 +128,6 @@ const ROTATION_DURATION_SECONDS = 42;
 const SkillsOrbit = () => {
   const revealRef = useReveal<HTMLDivElement>();
   const [hovered, setHovered] = useState<Tech | null>(null);
-  const [focusMode, setFocusMode] = useState(false);
   const [orbitSize, setOrbitSize] = useState(ORBIT_SIZE);
 
   useEffect(() => {
@@ -170,24 +169,13 @@ const SkillsOrbit = () => {
 
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="mb-3 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setFocusMode((v) => !v)}
-                  className="chip hover:border-primary/40 hover:text-foreground transition"
-                  aria-pressed={focusMode}
-                >
-                  Focus mode: {focusMode ? "On" : "Off"}
-                </button>
-              </div>
-
               <motion.div
                 aria-label="Rotating skills orbit"
                 className="relative select-none"
                 style={{ width: orbitSize, height: orbitSize }}
                 animate={{ rotate: 360 }}
                 transition={{
-                  duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
+                  duration: ROTATION_DURATION_SECONDS,
                   ease: "linear",
                   repeat: Infinity,
                 }}
@@ -213,30 +201,6 @@ const SkillsOrbit = () => {
                 ))}
               </svg>
 
-              {/* Center readout (counter-rotates so it stays upright) */}
-              <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                aria-hidden="true"
-              >
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
-                    ease: "linear",
-                    repeat: Infinity,
-                  }}
-                >
-                  <div className="w-44 rounded-2xl border border-border/60 bg-background/70 backdrop-blur px-4 py-3 text-center shadow-sm">
-                    <p className="mono-label text-[0.55rem]">
-                      {hovered ? "Selected" : "Hover a skill"}
-                    </p>
-                    <p className="mt-1 text-sm text-foreground font-medium">
-                      {hovered?.name ?? "—"}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-
               {/* Orbiting nodes */}
               {points.map(({ tech, x, y }) => (
                 <div
@@ -244,17 +208,26 @@ const SkillsOrbit = () => {
                   className="absolute left-1/2 top-1/2"
                   style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
                 >
+                  {/*
+                    Always-on "focus mode":
+                    when one icon is hovered/focused, dim the others.
+                  */}
+                  {(() => {
+                    const isActive = hovered?.name === tech.name;
+                    const isDimmed = hovered && hovered.name !== tech.name;
+
+                    return (
                   <motion.a
                     href={tech.href}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Open ${tech.name}`}
                     title={`Open ${tech.name}`}
-                    className="group block h-10 w-10 sm:h-12 sm:w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
+                    className="group relative block h-10 w-10 sm:h-12 sm:w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
                     // Counter-rotate so icons don't spin while the orbit container rotates.
                     animate={{ rotate: -360 }}
                     transition={{
-                      duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
+                      duration: ROTATION_DURATION_SECONDS,
                       ease: "linear",
                       repeat: Infinity,
                     }}
@@ -262,13 +235,9 @@ const SkillsOrbit = () => {
                     onMouseLeave={() => setHovered((curr) => (curr?.name === tech.name ? null : curr))}
                     onFocus={() => setHovered(tech)}
                     onBlur={() => setHovered((curr) => (curr?.name === tech.name ? null : curr))}
-                    style={
-                      focusMode && hovered && hovered.name !== tech.name
-                        ? { opacity: 0.28 }
-                        : undefined
-                    }
+                    style={isDimmed ? { opacity: 0.28 } : undefined}
                   >
-                    <div className="h-full w-full flex items-center justify-center">
+                    <div className="relative h-full w-full flex items-center justify-center">
                       {tech.iconUrl ? (
                         <img
                           src={tech.iconUrl}
@@ -276,14 +245,26 @@ const SkillsOrbit = () => {
                           className={tech.iconClassName ?? "h-6 w-6 sm:h-7 sm:w-7"}
                           loading="lazy"
                           draggable={false}
+                          style={isActive ? { opacity: 0.35 } : undefined}
                         />
                       ) : (
                         <div className="h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center font-mono text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] text-muted-foreground">
                           {tech.label ?? tech.name}
                         </div>
                       )}
+
+                      {/* Hover label */}
+                      {isActive && (
+                        <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <span className="rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[0.65rem] font-medium text-foreground shadow-sm backdrop-blur">
+                            {tech.name}
+                          </span>
+                        </span>
+                      )}
                     </div>
                   </motion.a>
+                    );
+                  })()}
                 </div>
               ))}
               </motion.div>

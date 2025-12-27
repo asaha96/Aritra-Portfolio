@@ -119,11 +119,11 @@ const Contact = () => {
                     aria-label={`Connect with Aritra on ${link.label}`}
                   >
                     <div className="flex items-center gap-3">
-                      <link.icon className="h-5 w-5 text-primary" />
-                      <div>
-                        <p className="font-medium text-foreground">{link.label}</p>
-                        <p className="text-sm text-muted-foreground">{link.description}</p>
-                      </div>
+                    <link.icon className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium text-foreground">{link.label}</p>
+                      <p className="text-sm text-muted-foreground">{link.description}</p>
+                    </div>
                     </div>
                     <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground" />
                   </a>

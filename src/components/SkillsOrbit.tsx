@@ -147,11 +147,11 @@ const SkillsOrbit = () => {
   const center = orbitSize / 2;
   const points = useMemo(() => {
     return techStack.map((tech, index) => {
-      const theta = (index / techStack.length) * Math.PI * 2 - Math.PI / 2;
+    const theta = (index / techStack.length) * Math.PI * 2 - Math.PI / 2;
       const x = Math.cos(theta) * orbitRadius;
       const y = Math.sin(theta) * orbitRadius;
-      return { tech, x, y };
-    });
+    return { tech, x, y };
+  });
   }, [orbitRadius]);
 
   return (
@@ -169,17 +169,17 @@ const SkillsOrbit = () => {
 
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
             <div className="relative">
-              <motion.div
-                aria-label="Rotating skills orbit"
-                className="relative select-none"
+            <motion.div
+              aria-label="Rotating skills orbit"
+              className="relative select-none"
                 style={{ width: orbitSize, height: orbitSize }}
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: ROTATION_DURATION_SECONDS,
-                  ease: "linear",
-                  repeat: Infinity,
-                }}
-              >
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: ROTATION_DURATION_SECONDS,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+            >
               {/* Lines */}
               <svg
                 className="absolute inset-0"
@@ -225,12 +225,12 @@ const SkillsOrbit = () => {
                     title={`Open ${tech.name}`}
                     className="group relative block h-10 w-10 sm:h-12 sm:w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
                     // Counter-rotate so icons don't spin while the orbit container rotates.
-                    animate={{ rotate: -360 }}
-                    transition={{
-                      duration: ROTATION_DURATION_SECONDS,
-                      ease: "linear",
-                      repeat: Infinity,
-                    }}
+                        animate={{ rotate: -360 }}
+                        transition={{
+                          duration: ROTATION_DURATION_SECONDS,
+                          ease: "linear",
+                          repeat: Infinity,
+                        }}
                     onMouseEnter={() => setHovered(tech)}
                     onMouseLeave={() => setHovered((curr) => (curr?.name === tech.name ? null : curr))}
                     onFocus={() => setHovered(tech)}
@@ -246,12 +246,12 @@ const SkillsOrbit = () => {
                           loading="lazy"
                           draggable={false}
                           style={isActive ? { opacity: 0.35 } : undefined}
-                        />
-                      ) : (
+                      />
+                    ) : (
                         <div className="h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center font-mono text-[0.6rem] sm:text-[0.65rem] tracking-[0.22em] text-muted-foreground">
-                          {tech.label ?? tech.name}
-                        </div>
-                      )}
+                        {tech.label ?? tech.name}
+                      </div>
+                    )}
 
                       {/* Hover label */}
                       {isActive && (
@@ -261,13 +261,13 @@ const SkillsOrbit = () => {
                           </span>
                         </span>
                       )}
-                    </div>
+                  </div>
                   </motion.a>
                     );
                   })()}
                 </div>
               ))}
-              </motion.div>
+            </motion.div>
             </div>
           </div>
         </div>

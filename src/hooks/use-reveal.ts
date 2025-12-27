@@ -45,20 +45,20 @@ const useReveal = <T extends HTMLElement>() => {
     let observer: IntersectionObserver | null = null;
     if ("IntersectionObserver" in window) {
       observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
+      ([entry]) => {
+        if (entry.isIntersecting) {
             revealNow();
             observer?.disconnect();
-          }
-        },
-        {
+        }
+      },
+      {
           // Slightly earlier than the manual threshold, but not "way too early".
           threshold: 0.12,
           rootMargin: "0px 0px -15% 0px",
-        },
-      );
+      },
+    );
 
-      observer.observe(node);
+    observer.observe(node);
     }
 
     return () => {

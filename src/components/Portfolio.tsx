@@ -8,7 +8,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import useReveal from "@/hooks/use-reveal";
-import vehicleTrajectory from "@/assets/vehicle-trajectory.png";
 import leitFlashcards from "@/assets/leit-flashcards.png";
 import chatgtImage from "@/assets/chatgt.png";
 import atlmetrovisImage from "@/assets/atlmetrovis.png";
@@ -47,7 +46,7 @@ const Portfolio = () => {
       id: 1,
       title: "Emergency Response CAV Analytics",
       subtitle: "ITS & CAV Lab",
-      image: vehicleTrajectory,
+      image: "/lovable-uploads/BSMSC.png",
       imageAlt: "Visualization of emergency vehicle trajectories over North Avenue Bridge",
       description:
         "Large-scale data pipelines and dashboards for connected vehicle telemetry that support real-time emergency response decisions.",
@@ -60,7 +59,9 @@ const Portfolio = () => {
       ],
       metrics: ["100M+ BSMs", "30% faster decisions", "Multi-TB pipeline"],
       tags: ["Python", "Pandas", "PyDeck", "Altair", "HPC"],
-      links: {},
+      links: {
+        repo: "https://github.com/asaha96/BSM-Research/tree/main",
+      },
       category: "Data",
       featured: true,
     },
@@ -228,19 +229,19 @@ const Portfolio = () => {
                           className="relative block h-full w-full overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                           aria-label={`Open ${project.title} quick view`}
                         >
-                          <img
-                            src={project.image}
-                            alt={project.imageAlt}
+                        <img
+                          src={project.image}
+                          alt={project.imageAlt}
                             className={`absolute inset-0 h-full w-full rounded-2xl object-cover object-center origin-center transition-transform duration-500 transform-gpu lg:static lg:h-auto lg:w-full ${
-                              project.imageClassName ?? ""
+                            project.imageClassName ?? ""
                             } ${project.imageHoverClassName ?? "sm:group-hover:scale-105"}`}
-                            loading="lazy"
-                            onError={(e) => {
-                              // Prevent broken-image UI if a local public/ asset is missing.
-                              e.currentTarget.onerror = null;
-                              e.currentTarget.src = "/placeholder.svg";
-                            }}
-                          />
+                          loading="lazy"
+                          onError={(e) => {
+                            // Prevent broken-image UI if a local public/ asset is missing.
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "/placeholder.svg";
+                          }}
+                        />
                         </button>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
@@ -292,22 +293,22 @@ const Portfolio = () => {
 
                       {isOpen && (
                         <div id={`project-details-${project.id}`} className="space-y-5">
-                          <ul className="space-y-2 text-sm text-muted-foreground">
-                            {project.highlights.map((highlight) => (
-                              <li key={highlight} className="flex items-start gap-2">
-                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
-                                <span>{highlight}</span>
-                              </li>
-                            ))}
-                          </ul>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {project.highlights.map((highlight) => (
+                          <li key={highlight} className="flex items-start gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
 
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag) => (
-                              <span key={tag} className="chip">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="chip">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                         </div>
                       )}
 

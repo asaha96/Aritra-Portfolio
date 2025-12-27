@@ -221,17 +221,17 @@ const Portfolio = () => {
                     <div
                       className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
-                      <div className="relative isolate overflow-hidden rounded-2xl border border-border [clip-path:inset(0_round_1rem)]">
+                      <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 aspect-[16/10] lg:[aspect-ratio:auto]">
                         <button
                           type="button"
                           onClick={() => setModalProjectId(project.id)}
-                          className="block w-full overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          className="relative block h-full w-full overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                           aria-label={`Open ${project.title} quick view`}
                         >
                           <img
                             src={project.image}
                             alt={project.imageAlt}
-                            className={`block w-full rounded-2xl object-cover object-center origin-center transition-transform duration-500 transform-gpu ${
+                            className={`absolute inset-0 h-full w-full rounded-2xl object-cover object-center origin-center transition-transform duration-500 transform-gpu lg:static lg:h-auto lg:w-full ${
                               project.imageClassName ?? ""
                             } ${project.imageHoverClassName ?? "sm:group-hover:scale-105"}`}
                             loading="lazy"
@@ -393,11 +393,11 @@ const Portfolio = () => {
               </DialogHeader>
 
               <div className="space-y-4">
-                <div className="relative isolate overflow-hidden rounded-2xl border border-border [clip-path:inset(0_round_1rem)]">
+                <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 aspect-[16/10] lg:[aspect-ratio:auto]">
                   <img
                     src={modalProject.image}
                     alt={modalProject.imageAlt}
-                    className={`block w-full rounded-2xl object-cover object-center origin-center transform-gpu ${modalProject.imageClassName ?? ""}`}
+                    className={`absolute inset-0 h-full w-full rounded-2xl object-cover object-center origin-center transform-gpu lg:static lg:h-auto lg:w-full ${modalProject.imageClassName ?? ""}`}
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;

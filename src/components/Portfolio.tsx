@@ -93,8 +93,8 @@ const Portfolio = () => {
       title: "Layout AI",
       subtitle: "Layout, Professional Floor Plan Design Platform",
       image: "/lovable-uploads/original.jpg",
-      imageClassName: "scale-[1.12]",
-      imageHoverClassName: "group-hover:scale-[1.18]",
+      imageClassName: "sm:scale-[1.12]",
+      imageHoverClassName: "sm:group-hover:scale-[1.18]",
       imageAlt: "Layout AI web-based floor plan editor interface",
       description:
         "Built at HackGT. AI powered floor plan editor with real time collaboration and intelligent design assistance. A web based floor plan design platform with CAD like precision, Figma like canvas interactions, and an AI assistant for layout creation and suggestions.",
@@ -221,7 +221,7 @@ const Portfolio = () => {
                     <div
                       className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
-                      <div className="relative isolate overflow-hidden rounded-2xl border border-border">
+                      <div className="relative isolate overflow-hidden rounded-2xl border border-border [clip-path:inset(0_round_1rem)]">
                         <button
                           type="button"
                           onClick={() => setModalProjectId(project.id)}
@@ -233,7 +233,7 @@ const Portfolio = () => {
                             alt={project.imageAlt}
                             className={`block w-full rounded-2xl object-cover object-center origin-center transition-transform duration-500 transform-gpu ${
                               project.imageClassName ?? ""
-                            } ${project.imageHoverClassName ?? "group-hover:scale-105"}`}
+                            } ${project.imageHoverClassName ?? "sm:group-hover:scale-105"}`}
                             loading="lazy"
                             onError={(e) => {
                               // Prevent broken-image UI if a local public/ asset is missing.
@@ -393,7 +393,7 @@ const Portfolio = () => {
               </DialogHeader>
 
               <div className="space-y-4">
-                <div className="relative isolate overflow-hidden rounded-2xl border border-border">
+                <div className="relative isolate overflow-hidden rounded-2xl border border-border [clip-path:inset(0_round_1rem)]">
                   <img
                     src={modalProject.image}
                     alt={modalProject.imageAlt}

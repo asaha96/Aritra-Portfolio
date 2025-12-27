@@ -299,6 +299,45 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hide scrollbars but keep scrolling (mouse wheel / trackpad / touch) */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE/Edge (legacy) */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* Thin dark scrollbar (keeps drag-to-scroll affordance) */
+  .scrollbar-dark {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: hsl(var(--foreground) / 0.35) transparent;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.28);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--foreground) / 0.4);
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
 }
 
 .page-atmosphere {

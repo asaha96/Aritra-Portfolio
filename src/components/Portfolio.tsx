@@ -217,9 +217,9 @@ const Portfolio = () => {
               const description = isOpen ? project.description : getFirstSentence(project.description);
               return (
                 <div key={project.id} className="project-card group">
-                  <div className="grid lg:grid-cols-12 gap-8 items-start lg:items-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start lg:items-center">
                     <div
-                      className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
+                      className={`lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
                       <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 aspect-[16/10] lg:[aspect-ratio:auto]">
                         <button
@@ -253,7 +253,7 @@ const Portfolio = () => {
                     </div>
 
                     <div
-                      className={`col-span-12 lg:col-span-5 space-y-5 ${
+                      className={`lg:col-span-5 space-y-5 ${
                         reversed ? "lg:order-1" : ""
                       }`}
                     >

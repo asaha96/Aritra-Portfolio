@@ -1,8 +1,14 @@
-import { GraduationCap, Briefcase } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Briefcase } from "lucide-react";
 import { motion } from "motion/react";
 import useReveal from "@/hooks/use-reveal";
+import { useEffect, useRef, useState } from "react";
 const Resume = () => {
   const revealRef = useReveal<HTMLDivElement>();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [showResumeCta, setShowResumeCta] = useState(false);
+
+  const resumeUrl =
+    "https://drive.google.com/file/d/1yDwr-FbBHqGku06XtcbfSRbJDBkX75Eg/view?usp=sharing";
 
   const experience = [
     {
@@ -41,8 +47,28 @@ const Resume = () => {
     },
   ];
 
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setShowResumeCta(true);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        setShowResumeCta(entry.isIntersecting);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -35% 0px" },
+    );
+
+    obs.observe(node);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section id="experience" className="section">
+    <section ref={sectionRef} id="experience" className="section">
       <div className="max-w-7xl mx-auto container-padding">
         <div ref={revealRef} className="space-y-12 reveal">
           <div className="space-y-4 max-w-3xl">
@@ -103,6 +129,24 @@ const Resume = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Floating resume CTA (appears near Experience) */}
+      <div
+        className={[
+          "fixed right-4 bottom-4 z-40 transition-all duration-300",
+          showResumeCta ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3 pointer-events-none",
+        ].join(" ")}
+      >
+        <a
+          href={resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-primary"
+        >
+          Resume
+          <ArrowUpRight className="h-4 w-4" />
+        </a>
       </div>
     </section>
   );

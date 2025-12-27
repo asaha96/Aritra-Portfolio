@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const lastScrollY = useRef(0);
   const heroEndY = useRef(0);
 
@@ -36,6 +37,11 @@ const Navigation = () => {
       const goingDown = y > lastScrollY.current;
       const pastHero = y > heroEndY.current;
 
+      const doc = document.documentElement;
+      const max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+      const progress = Math.min(1, Math.max(0, y / max));
+      setScrollProgress(progress);
+
       if (!pastHero) {
         setIsHidden(false);
       } else {
@@ -47,6 +53,7 @@ const Navigation = () => {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -58,6 +65,15 @@ const Navigation = () => {
         isHidden ? "-translate-y-full pointer-events-none" : "translate-y-0",
       ].join(" ")}
     >
+      {/* Scroll progress */}
+      <div className="absolute left-0 top-0 h-[2px] w-full bg-transparent">
+        <div
+          className="h-full origin-left bg-primary/70"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+          aria-hidden="true"
+        />
+      </div>
+
       {/* Skip to content link for accessibility */}
       <a 
         href="#main-content" 

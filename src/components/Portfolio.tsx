@@ -1,21 +1,48 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ExternalLink, Github, FileText } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import useReveal from "@/hooks/use-reveal";
 import vehicleTrajectory from "@/assets/vehicle-trajectory.png";
 import leitFlashcards from "@/assets/leit-flashcards.png";
 import chatgtImage from "@/assets/chatgt.png";
 import atlmetrovisImage from "@/assets/atlmetrovis.png";
 
+type Project = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  imageClassName?: string;
+  imageHoverClassName?: string;
+  description: string;
+  impact: string;
+  highlights: string[];
+  metrics: string[];
+  tags: string[];
+  category: "AI" | "Data" | "HCI" | "Viz" | "Systems";
+  featured?: boolean;
+  links: Record<string, string>;
+};
+
 const Portfolio = () => {
   const revealRef = useReveal<HTMLDivElement>();
   const [openProjectId, setOpenProjectId] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<"All" | Project["category"]>("All");
+  const [modalProjectId, setModalProjectId] = useState<number | null>(null);
 
   const getFirstSentence = (text: string) => {
     const match = text.trim().match(/^(.+?[.!?])(\s|$)/);
     return match ? match[1] : text;
   };
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "Emergency Response CAV Analytics",
@@ -34,6 +61,8 @@ const Portfolio = () => {
       metrics: ["100M+ BSMs", "30% faster decisions", "Multi-TB pipeline"],
       tags: ["Python", "Pandas", "PyDeck", "Altair", "HPC"],
       links: {},
+      category: "Data",
+      featured: true,
     },
     {
       id: 2,
@@ -57,6 +86,7 @@ const Portfolio = () => {
         demo: "https://drive.google.com/file/d/1VbbJK7WuFmNf7sG2uch6thGEfBHOcD1d/view?usp=sharing",
         repo: "https://github.com/asaha96/Leit",
       },
+      category: "HCI",
     },
     {
       id: 5,
@@ -84,6 +114,7 @@ const Portfolio = () => {
         devpost: "https://devpost.com/software/layout-ai",
         repo: "https://github.com/Sectonic/Vene",
       },
+      category: "Systems",
     },
     {
       id: 3,
@@ -105,6 +136,7 @@ const Portfolio = () => {
       links: {
         demo: "https://drive.google.com/file/d/1Wc8allTp_IdQYf6Okii8t2Y0ZReQ2wXJ/view?usp=sharing",
       },
+      category: "AI",
     },
     {
       id: 4,
@@ -129,8 +161,23 @@ const Portfolio = () => {
         writeup:
           "https://docs.google.com/document/d/14j6O590rOv84XYtV5HQhU37G1FThFgIaNa9CXxckbX8/edit?usp=sharing",
       },
+      category: "Viz",
     },
   ];
+
+  const categories: Array<"All" | Project["category"]> = ["All", "AI", "Data", "HCI", "Viz", "Systems"];
+
+  const ordered = [...projects].sort((a, b) => {
+    const af = a.featured ? 1 : 0;
+    const bf = b.featured ? 1 : 0;
+    if (af !== bf) return bf - af;
+    return a.id - b.id;
+  });
+
+  const visibleProjects =
+    activeCategory === "All" ? ordered : ordered.filter((p) => p.category === activeCategory);
+
+  const modalProject = projects.find((p) => p.id === modalProjectId) ?? null;
 
   return (
     <section id="work" className="section">
@@ -145,8 +192,26 @@ const Portfolio = () => {
             </p>
           </div>
 
+          {/* Filters */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                className={[
+                  "chip transition",
+                  activeCategory === cat ? "border-primary/40 text-foreground bg-accent/50" : "",
+                ].join(" ")}
+                aria-pressed={activeCategory === cat}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className="space-y-10">
-            {projects.map((project, index) => {
+            {visibleProjects.map((project, index) => {
               const reversed = index % 2 === 1;
               const isOpen = openProjectId === project.id;
               const description = isOpen ? project.description : getFirstSentence(project.description);
@@ -157,19 +222,26 @@ const Portfolio = () => {
                       className={`col-span-12 lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
                       <div className="relative overflow-hidden rounded-2xl border border-border">
-                        <img
-                          src={project.image}
-                          alt={project.imageAlt}
-                          className={`w-full object-cover transition-transform duration-500 ${
-                            project.imageClassName ?? ""
-                          } ${project.imageHoverClassName ?? "group-hover:scale-105"}`}
-                          loading="lazy"
-                          onError={(e) => {
-                            // Prevent broken-image UI if a local public/ asset is missing.
-                            e.currentTarget.onerror = null;
-                            e.currentTarget.src = "/placeholder.svg";
-                          }}
-                        />
+                        <button
+                          type="button"
+                          onClick={() => setModalProjectId(project.id)}
+                          className="block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          aria-label={`Open ${project.title} quick view`}
+                        >
+                          <img
+                            src={project.image}
+                            alt={project.imageAlt}
+                            className={`w-full object-cover transition-transform duration-500 ${
+                              project.imageClassName ?? ""
+                            } ${project.imageHoverClassName ?? "group-hover:scale-105"}`}
+                            loading="lazy"
+                            onError={(e) => {
+                              // Prevent broken-image UI if a local public/ asset is missing.
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = "/placeholder.svg";
+                            }}
+                          />
+                        </button>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {project.metrics.map((metric) => (
@@ -304,6 +376,121 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
+
+      {/* Quick view modal */}
+      <Dialog
+        open={modalProjectId !== null}
+        onOpenChange={(open) => {
+          if (!open) setModalProjectId(null);
+        }}
+      >
+        <DialogContent className="max-w-3xl">
+          {modalProject && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{modalProject.title}</DialogTitle>
+                <DialogDescription>{modalProject.subtitle}</DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-4">
+                <div className="relative overflow-hidden rounded-2xl border border-border">
+                  <img
+                    src={modalProject.image}
+                    alt={modalProject.imageAlt}
+                    className={`w-full object-cover ${modalProject.imageClassName ?? ""}`}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
+                  />
+                </div>
+
+                <p className="text-sm text-muted-foreground">{modalProject.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="mono-label mr-2 text-[0.6rem]">Impact</span>
+                  <span className="text-foreground">{modalProject.impact}</span>
+                </p>
+
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {modalProject.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/40" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2">
+                  {modalProject.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-4 text-sm">
+                  {modalProject.links.dashboard && (
+                    <a
+                      href={modalProject.links.dashboard}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Dashboard
+                    </a>
+                  )}
+                  {modalProject.links.demo && (
+                    <a
+                      href={modalProject.links.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Demo
+                    </a>
+                  )}
+                  {modalProject.links.devpost && (
+                    <a
+                      href={modalProject.links.devpost}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Devpost
+                    </a>
+                  )}
+                  {modalProject.links.repo && (
+                    <a
+                      href={modalProject.links.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                    >
+                      <Github className="h-4 w-4" />
+                      Repository
+                    </a>
+                  )}
+                  {modalProject.links.writeup && (
+                    <a
+                      href={modalProject.links.writeup}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground link-underline"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Writeup
+                    </a>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

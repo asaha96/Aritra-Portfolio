@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import useReveal from "@/hooks/use-reveal";
 
 const Hero = () => {
@@ -78,6 +78,18 @@ const Hero = () => {
               <p className="mono-label mt-2 text-[0.6rem]">{metric.label}</p>
             </div>
           ))}
+        </div>
+
+        {/* Scroll cue */}
+        <div className="mt-10 flex justify-center">
+          <a
+            href="#work"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Scroll to selected work"
+          >
+            <span className="mono-label">Scroll</span>
+            <ArrowDown className="h-4 w-4 animate-bounce" />
+          </a>
         </div>
       </div>
     </section>

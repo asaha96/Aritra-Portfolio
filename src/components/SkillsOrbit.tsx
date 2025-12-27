@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import useReveal from "@/hooks/use-reveal";
 
@@ -126,17 +127,21 @@ const ROTATION_DURATION_SECONDS = 42;
 
 const SkillsOrbit = () => {
   const revealRef = useReveal<HTMLDivElement>();
+  const [hovered, setHovered] = useState<Tech | null>(null);
+  const [focusMode, setFocusMode] = useState(false);
 
   const center = ORBIT_SIZE / 2;
-  const points = techStack.map((tech, index) => {
-    const theta = (index / techStack.length) * Math.PI * 2 - Math.PI / 2;
-    const x = Math.cos(theta) * ORBIT_RADIUS;
-    const y = Math.sin(theta) * ORBIT_RADIUS;
-    return { tech, x, y };
-  });
+  const points = useMemo(() => {
+    return techStack.map((tech, index) => {
+      const theta = (index / techStack.length) * Math.PI * 2 - Math.PI / 2;
+      const x = Math.cos(theta) * ORBIT_RADIUS;
+      const y = Math.sin(theta) * ORBIT_RADIUS;
+      return { tech, x, y };
+    });
+  }, []);
 
   return (
-    <section className="section">
+    <section className="section pt-12 lg:pt-16">
       <div className="max-w-7xl mx-auto container-padding">
         <div ref={revealRef} className="grid lg:grid-cols-12 gap-10 items-center reveal">
           <div className="lg:col-span-5 space-y-4">
@@ -149,17 +154,29 @@ const SkillsOrbit = () => {
           </div>
 
           <div className="lg:col-span-7 flex justify-center lg:justify-end">
-            <motion.div
-              aria-label="Rotating skills orbit"
-              className="relative select-none"
-              style={{ width: ORBIT_SIZE, height: ORBIT_SIZE }}
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: ROTATION_DURATION_SECONDS,
-                ease: "linear",
-                repeat: Infinity,
-              }}
-            >
+            <div className="relative">
+              <div className="mb-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setFocusMode((v) => !v)}
+                  className="chip hover:border-primary/40 hover:text-foreground transition"
+                  aria-pressed={focusMode}
+                >
+                  Focus mode: {focusMode ? "On" : "Off"}
+                </button>
+              </div>
+
+              <motion.div
+                aria-label="Rotating skills orbit"
+                className="relative select-none"
+                style={{ width: ORBIT_SIZE, height: ORBIT_SIZE }}
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
+                  ease: "linear",
+                  repeat: Infinity,
+                }}
+              >
               {/* Lines */}
               <svg
                 className="absolute inset-0"
@@ -181,11 +198,29 @@ const SkillsOrbit = () => {
                 ))}
               </svg>
 
-              {/* Center node */}
+              {/* Center readout (counter-rotates so it stays upright) */}
               <div
-                className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-border/70 bg-card shadow-sm"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                 aria-hidden="true"
-              />
+              >
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
+                    ease: "linear",
+                    repeat: Infinity,
+                  }}
+                >
+                  <div className="w-44 rounded-2xl border border-border/60 bg-background/70 backdrop-blur px-4 py-3 text-center shadow-sm">
+                    <p className="mono-label text-[0.55rem]">
+                      {hovered ? "Selected" : "Hover a skill"}
+                    </p>
+                    <p className="mt-1 text-sm text-foreground font-medium">
+                      {hovered?.name ?? "—"}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
 
               {/* Orbiting nodes */}
               {points.map(({ tech, x, y }) => (
@@ -200,14 +235,23 @@ const SkillsOrbit = () => {
                     rel="noreferrer"
                     aria-label={`Open ${tech.name}`}
                     title={`Open ${tech.name}`}
-                    className="group block h-12 w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="group block h-12 w-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-opacity"
                     // Counter-rotate so icons don't spin while the orbit container rotates.
                     animate={{ rotate: -360 }}
                     transition={{
-                      duration: ROTATION_DURATION_SECONDS,
+                      duration: focusMode ? ROTATION_DURATION_SECONDS * 2 : ROTATION_DURATION_SECONDS,
                       ease: "linear",
                       repeat: Infinity,
                     }}
+                    onMouseEnter={() => setHovered(tech)}
+                    onMouseLeave={() => setHovered((curr) => (curr?.name === tech.name ? null : curr))}
+                    onFocus={() => setHovered(tech)}
+                    onBlur={() => setHovered((curr) => (curr?.name === tech.name ? null : curr))}
+                    style={
+                      focusMode && hovered && hovered.name !== tech.name
+                        ? { opacity: 0.28 }
+                        : undefined
+                    }
                   >
                     <div className="h-full w-full flex items-center justify-center">
                       {tech.iconUrl ? (
@@ -227,7 +271,8 @@ const SkillsOrbit = () => {
                   </motion.a>
                 </div>
               ))}
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>

@@ -164,6 +164,28 @@ const Portfolio = () => {
       },
       category: "Viz",
     },
+    {
+      id: 6,
+      title: "SafeSheet - SQL Safety Analysis & Rollback Generator",
+      subtitle: "SQL Safety Tool",
+      image: "/lovable-uploads/SSlogo.png",
+      imageAlt: "SafeSheet SQL safety analysis interface with risk assessment and rollback script generation",
+      description:
+        "SQL safety tool that prevents accidental data loss through automated risk assessment and AI-powered rollback script generation.",
+      impact:
+        "Prevents costly database mistakes by analyzing SQL before execution and generating idempotent rollback scripts for data engineers.",
+      highlights: [
+        "Built FastAPI backend with dual analysis modes: rule-based parsing and LangChain LCEL chains for AI-powered validation.",
+        "Integrated DuckDB sandbox for SQL syntax validation and dry-run simulation before LLM processing.",
+        "Shipped React frontend with Monaco SQL editor, real-time safety reports, and visual risk indicators.",
+      ],
+      metrics: ["Dual analysis modes", "AI-powered rollback generation", "Real-time validation"],
+      tags: ["React", "TypeScript", "Python", "FastAPI", "LangChain", "DuckDB", "sqlglot", "OpenAI API", "Anthropic API"],
+      links: {
+        repo: "https://github.com/asaha96/SafeSheet",
+      },
+      category: "Systems",
+    },
   ];
 
   const categories: Array<"All" | Project["category"]> = ["All", "AI", "Data", "HCI", "Viz", "Systems"];

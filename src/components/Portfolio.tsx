@@ -11,7 +11,6 @@ import useReveal from "@/hooks/use-reveal";
 import leitFlashcards from "@/assets/leit-flashcards.png";
 import chatgtImage from "@/assets/chatgt.png";
 import atlmetrovisImage from "@/assets/atlmetrovis.png";
-import ssNewLogo from "@/assets/SSNewlogo.png";
 
 type Project = {
   id: number;
@@ -169,7 +168,7 @@ const Portfolio = () => {
       id: 6,
       title: "SafeSheet - SQL Safety Analysis & Rollback Generator",
       subtitle: "SQL Safety Tool",
-      image: ssNewLogo,
+      image: "/lovable-uploads/SSLogoApp.png",
       imageAlt: "SafeSheet SQL safety analysis interface with risk assessment and rollback script generation",
       description:
         "SQL safety tool that prevents accidental data loss through automated risk assessment and AI-powered rollback script generation.",

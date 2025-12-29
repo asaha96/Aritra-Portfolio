@@ -8,7 +8,7 @@ const Resume = () => {
   const [showResumeCta, setShowResumeCta] = useState(false);
 
   const resumeUrl =
-    "https://drive.google.com/file/d/1yDwr-FbBHqGku06XtcbfSRbJDBkX75Eg/view?usp=sharing";
+    "https://drive.google.com/file/d/1NcpBAfLgt1q1yhjxhs4IeQVMIFsUdA8R/view?usp=sharing";
 
   const experience = [
     {

@@ -113,7 +113,7 @@ const Portfolio = () => {
       links: {
         demo: "https://drive.google.com/file/d/1EijsEQ0MvyZTbC2yIkp7yWwKjCDIaR8N/view?usp=sharing",
         devpost: "https://devpost.com/software/layout-ai",
-        repo: "https://github.com/Sectonic/Vene",
+        repo: "https://github.com/Sectonic/Layout",
       },
       category: "Systems",
     },

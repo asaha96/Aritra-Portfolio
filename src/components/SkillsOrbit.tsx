@@ -162,8 +162,7 @@ const SkillsOrbit = () => {
             <p className="mono-label">Tools</p>
             <h2 className="section-title">A quick orbit of what I ship with.</h2>
             <p className="section-lede">
-              Core languages, frameworks, and infra I use regularly—connected to the center and
-              rotating slowly.
+              Core languages, frameworks, and infrastructure I use regularly.
             </p>
           </div>
 

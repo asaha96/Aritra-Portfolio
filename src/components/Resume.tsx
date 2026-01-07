@@ -16,7 +16,7 @@ const Resume = () => {
       role: "Software Engineering Intern",
       org: "Siemens",
       detail:
-        "Full-stack feature delivery, testing/QA, and shipping improvements that held up in production.",
+        "Full-stack feature delivery, testing/QA, and shipping improvements that enhanced production.",
     },
     {
       period: "Current",
@@ -28,7 +28,7 @@ const Resume = () => {
     {
       period: "Current",
       role: "Teaching Assistant",
-      org: "PSYC 3040",
+      org: "Sensation and Perception",
       detail:
         "Course support via office hours, feedback, and learner-facing materials focused on clarity and outcomes.",
     },
@@ -73,7 +73,7 @@ const Resume = () => {
         <div ref={revealRef} className="space-y-12 reveal">
           <div className="space-y-4 max-w-3xl">
             <p className="mono-label">Experience</p>
-            <h2 className="section-title">Work outside the case studies.</h2>
+            <h2 className="section-title">Engineering in Production</h2>
             <p className="section-lede">
               Non-project work: internships, leadership, and teaching focused on shipping and
               community outcomes.

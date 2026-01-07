@@ -126,7 +126,7 @@ const Portfolio = () => {
       description:
         "On-device study assistant with dual-mode chat, local RAG, and PDF-to-flashcard workflows.",
       impact:
-        "Enables private study support with zero data egress, ready for deployment to 5,000+ GT students.",
+        "It has been deployed to 5000+ GT Students, enabling private study support with zero data egress.",
       highlights: [
         "Built streaming chat with page-level citations for RAG sessions.",
         "Integrated local models via Ollama for 100 percent privacy.",

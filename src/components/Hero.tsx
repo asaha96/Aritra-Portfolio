@@ -6,10 +6,10 @@ const Hero = () => {
   const metricsRef = useReveal<HTMLDivElement>();
 
   const metrics = [
-    { value: "100M+", label: "BSM records processed" },
-    { value: "5K+", label: "student users served" },
-    { value: "85%", label: "grading agreement" },
-    { value: "30%", label: "faster response decisions" },
+    { value: "100M+", label: "Basic Safety Message records processed" },
+    { value: "10K+", label: "Georgia Tech student users served" },
+    { value: "85%", label: "AI Grading Instructor Alignment" },
+    { value: "30%", label: "faster emergency response decisions" },
   ];
 
   const now = [
@@ -29,7 +29,7 @@ const Hero = () => {
                 Building AI and data systems that feel inevitable to use.
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl">
-                I design the pipeline, the interface, and the story between them. My work lives in
+                I design the pipeline, the interface, and the systems that connect the two. My work lives in
                 transportation, education, and privacy-first AI.
               </p>
             </div>

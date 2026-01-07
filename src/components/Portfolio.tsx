@@ -103,7 +103,7 @@ const Portfolio = () => {
       imageHoverClassName: "sm:group-hover:scale-[1.18]",
       imageAlt: "Layout AI web-based floor plan editor interface",
       description:
-        "Built at HackGT. AI powered floor plan editor with real time collaboration and intelligent design assistance. A web based floor plan design platform with CAD like precision, Figma like canvas interactions, and an AI assistant for layout creation and suggestions.",
+        "A collaborative AI floor plan editor blending CAD precision with Figma-style interactions.",
       problem:
         "Designers needed CAD-level precision for floor plans without the steep learning curve or collaboration limits of existing tools.",
       impact:

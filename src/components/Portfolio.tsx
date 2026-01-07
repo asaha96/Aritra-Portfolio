@@ -21,6 +21,7 @@ type Project = {
   imageClassName?: string;
   imageHoverClassName?: string;
   description: string;
+  problem?: string;
   impact: string;
   highlights: string[];
   metrics: string[];
@@ -50,6 +51,8 @@ const Portfolio = () => {
       imageAlt: "Visualization of emergency vehicle trajectories over North Avenue Bridge",
       description:
         "Large-scale data pipelines and dashboards for connected vehicle telemetry that support real-time emergency response decisions.",
+      problem:
+        "Response teams needed real-time vehicle data for routing, but raw telemetry was too massive and complex for instant analysis.",
       impact:
         "Reduced emergency decision time by about 30 percent with reliable, analysis-ready data products.",
       highlights: [
@@ -74,6 +77,8 @@ const Portfolio = () => {
         "AI-powered spaced repetition flashcard interface showing a study question and feedback options.",
       description:
         "Canvas LTI 1.3 study system with AI-driven flashcards, quizzes, and rubric-guided evaluation.",
+      problem:
+        "Students needed Canvas-integrated study tools, while instructors required AI grading that matched their standards without manual overhead.",
       impact:
         "Achieved 85 percent agreement with instructor grading and prepared for scale across 5,000+ students.",
       highlights: [
@@ -99,6 +104,8 @@ const Portfolio = () => {
       imageAlt: "Layout AI web-based floor plan editor interface",
       description:
         "Built at HackGT. AI powered floor plan editor with real time collaboration and intelligent design assistance. A web based floor plan design platform with CAD like precision, Figma like canvas interactions, and an AI assistant for layout creation and suggestions.",
+      problem:
+        "Designers needed CAD-level precision for floor plans without the steep learning curve or collaboration limits of existing tools.",
       impact:
         "Helps architects and designers create detailed layouts faster with guided placement, automated generation, and collaborative editing.",
       highlights: [
@@ -125,6 +132,8 @@ const Portfolio = () => {
       imageAlt: "ChatGT privacy-first AI study assistant interface",
       description:
         "On-device study assistant with dual-mode chat, local RAG, and PDF-to-flashcard workflows.",
+      problem:
+        "Students wanted ChatGPT-style assistance but required total academic privacy, prioritizing local processing over cloud convenience.",
       impact:
         "It has been deployed to 5000+ GT Students, enabling private study support with zero data egress.",
       highlights: [
@@ -147,6 +156,8 @@ const Portfolio = () => {
       imageAlt: "ATLMetroVis dashboard showing Atlanta commute and crash data visualization",
       description:
         "Interactive dashboard that merges commute burdens with crash patterns across the Atlanta metro region.",
+      problem:
+        "Planners needed a unified view of mobility inequities and safety hotspots to prioritize infrastructure and resource allocation.",
       impact:
         "Gives planners and community groups a shared map of inequities and safety hotspots.",
       highlights: [
@@ -172,6 +183,8 @@ const Portfolio = () => {
       imageAlt: "SafeSheet SQL safety analysis interface with risk assessment and rollback script generation",
       description:
         "SQL safety tool that prevents accidental data loss through automated risk assessment and AI-powered rollback script generation.",
+      problem:
+        "Data engineers needed a safeguard against destructive SQL queries that could delete or modify critical data without a recovery path.",
       impact:
         "Prevents costly database mistakes by analyzing SQL before execution and generating idempotent rollback scripts for data engineers.",
       highlights: [
@@ -285,6 +298,13 @@ const Portfolio = () => {
                         {project.title}
                       </h3>
                       <p className="text-muted-foreground">{description}</p>
+
+                      {project.problem && (
+                        <p className="text-sm text-muted-foreground">
+                          <span className="mono-label mr-2 text-[0.6rem]">Problem</span>
+                          <span className="text-foreground">{project.problem}</span>
+                        </p>
+                      )}
 
                       <p className="text-sm text-muted-foreground">
                         <span className="mono-label mr-2 text-[0.6rem]">Impact</span>
@@ -430,6 +450,12 @@ const Portfolio = () => {
                 </div>
 
                 <p className="text-sm text-muted-foreground">{modalProject.description}</p>
+                {modalProject.problem && (
+                  <p className="text-sm text-muted-foreground">
+                    <span className="mono-label mr-2 text-[0.6rem]">Problem</span>
+                    <span className="text-foreground">{modalProject.problem}</span>
+                  </p>
+                )}
                 <p className="text-sm text-muted-foreground">
                   <span className="mono-label mr-2 text-[0.6rem]">Impact</span>
                   <span className="text-foreground">{modalProject.impact}</span>

@@ -74,14 +74,6 @@ const Navigation = () => {
         />
       </div>
 
-      {/* Skip to content link for accessibility */}
-      <a 
-        href="#main-content" 
-        className="skip-link"
-      >
-        Skip to main content
-      </a>
-      
       <div className="max-w-7xl mx-auto container-padding">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

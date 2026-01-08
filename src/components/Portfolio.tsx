@@ -257,7 +257,7 @@ const Portfolio = () => {
                     <div
                       className={`lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
                     >
-                      <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 aspect-[16/10] lg:[aspect-ratio:auto]">
+                      <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 h-auto sm:aspect-[16/10] lg:[aspect-ratio:auto]">
                         <button
                           type="button"
                           onClick={() => setModalProjectId(project.id)}
@@ -267,7 +267,7 @@ const Portfolio = () => {
                         <img
                           src={project.image}
                           alt={project.imageAlt}
-                            className={`absolute inset-0 h-full w-full rounded-2xl object-cover object-center origin-center transition-transform duration-500 transform-gpu lg:static lg:h-auto lg:w-full ${
+                            className={`w-full h-auto rounded-2xl object-contain sm:object-cover sm:absolute sm:inset-0 sm:h-full object-center origin-center transition-transform duration-500 transform-gpu lg:static lg:h-auto lg:w-full ${
                             project.imageClassName ?? ""
                             } ${project.imageHoverClassName ?? "sm:group-hover:scale-105"}`}
                           loading="lazy"
@@ -436,11 +436,11 @@ const Portfolio = () => {
               </DialogHeader>
 
               <div className="space-y-4">
-                <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 aspect-[16/10] lg:[aspect-ratio:auto]">
+                <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 h-auto sm:aspect-[16/10] lg:[aspect-ratio:auto]">
                   <img
                     src={modalProject.image}
                     alt={modalProject.imageAlt}
-                    className={`absolute inset-0 h-full w-full rounded-2xl object-cover object-center origin-center transform-gpu lg:static lg:h-auto lg:w-full ${modalProject.imageClassName ?? ""}`}
+                    className={`w-full h-auto rounded-2xl object-contain sm:object-cover sm:absolute sm:inset-0 sm:h-full object-center origin-center transform-gpu lg:static lg:h-auto lg:w-full ${modalProject.imageClassName ?? ""}`}
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;

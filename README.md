@@ -4,7 +4,7 @@
 This repository contains the code for my personal portfolio website, where I showcase my projects, research, experience, and background.
 
 ## Live Site
-[https://aritras-impact-hub.lovable.app/](https://www.aritrasaha.com/)
+[https://aritrasaha.com](https://aritrasaha.com)
 
 ## Features
 - Project showcases (CAV analytics, EdTech tools, ChatGT, visualization work, and more)

@@ -57,7 +57,12 @@ const Hero = () => {
               <div className="h-px bg-foreground/10" />
               <div className="space-y-4">
                 {now.map((item) => (
-                  <div key={item.label} className={`flex items-start ${item.label !== "Now" ? "gap-0 sm:gap-4" : "gap-4"}`}>
+                  <div
+                    key={item.label}
+                    className={`flex items-start ${
+                      item.label !== "Now" ? "gap-0 sm:gap-4" : "gap-4"
+                    } translate-x-[1px] sm:translate-x-0`}
+                  >
                     <span className="mono-label w-20 text-[0.65rem]">{item.label}</span>
                     <p className="text-sm text-foreground">{item.value}</p>
                   </div>

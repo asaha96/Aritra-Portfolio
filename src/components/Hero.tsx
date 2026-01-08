@@ -7,7 +7,7 @@ const Hero = () => {
 
   const metrics = [
     { value: "100M+", label: "Basic Safety Message records processed" },
-    { value: "10K+", label: "Georgia Tech student users served" },
+    { value: "10K+", label: "Active Georgia Tech students served" },
     { value: "85%", label: "AI Grading Instructor Alignment" },
     { value: "30%", label: "faster emergency response decisions" },
   ];

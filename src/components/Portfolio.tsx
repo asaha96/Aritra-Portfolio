@@ -180,9 +180,9 @@ const Portfolio = () => {
       title: "SafeSheet - SQL Safety Analysis & Rollback Generator",
       subtitle: "SQL Safety Tool",
       image: "/lovable-uploads/SSLogoApp.png",
-      imageAlt: "SafeSheet SQL safety analysis interface with risk assessment and rollback script generation",
+      imageAlt: "SafeSheet SQL safety analysis interface with risk assessment and rollback script generation.",
       description:
-        "SQL safety tool that prevents accidental data loss through automated risk assessment and AI-powered rollback script generation.",
+        "SQL safety tool with automated risk assessment and AI-powered rollback script generation.",
       problem:
         "Data engineers needed a safeguard against destructive SQL queries that could delete or modify critical data without a recovery path.",
       impact:
@@ -198,6 +198,62 @@ const Portfolio = () => {
         repo: "https://github.com/asaha96/SafeSheet",
       },
       category: "Systems",
+    },
+    {
+      id: 7,
+      title: "Playproof",
+      subtitle: "Game-Based Human Verification",
+      image: "/lovable-uploads/Playprooflogo.png",
+      imageAlt: "Playproof dashboard showing deployments overview and bubble pop verification game preview",
+      description:
+        "Plug-and-play SDK for human verification through AI-generated mini-games and ML-powered behavioral detection.",
+      problem:
+        "Traditional CAPTCHAs are being beaten by models at 90% accuracy. The \"dead internet\" of bot activity drives billions in wasted spend and fraud; human verification had to change.",
+      impact:
+        "Defends against 99.9% of attacks in testing, with a universal SDK and full end-to-end system so organizations can deploy branded, game-based verification in minutes.",
+      highlights: [
+        "Fast-paced mini-games (Bubble Pop, Archery) built with Three.js that require human-like reaction time and movement.",
+        "ML-powered detection via Woodwide using movement features (velocity, jerk, path efficiency) to distinguish humans from bots.",
+        "Smart observability: monitors gameplay and regenerates games on suspicious patterns, with live telemetry dashboard.",
+        "Seamless branding: customize colors, sprites, and visuals so verification feels native to the product.",
+        "Full stack: TypeScript + Three.js SDK, Next.js backend with Woodwide ML, Convex, and admin dashboard.",
+      ],
+      metrics: ["99.9% defense", "10s max game", "Universal SDK"],
+      tags: ["TypeScript", "Three.js", "Next.js", "Convex", "LiveKit", "Woodwide"],
+      links: {
+        demo: "https://www.youtube.com/watch?v=2GKhTWCBUb4&t=43s",
+        devpost: "https://devpost.com/software/playproof?ref_content=my-projects-tab&ref_feature=my_projects",
+        repo: "https://github.com/asaha96/Playproof",
+      },
+      category: "AI",
+    },
+    {
+      id: 8,
+      title: "TerraWatt",
+      subtitle: "Solar Planning for Farms",
+      image: "/lovable-uploads/terawattlogo.png",
+      imageAlt: "TerraWatt landing page: See What Your Land Can Power with Start Planning and Learn More buttons",
+      description:
+        "Solar simulator for farms: draw your field, set a budget, and get site-specific crop + solar layouts with payback in minutes.",
+      problem:
+        "Farmers pay $10k–$50k and wait weeks for feasibility studies to learn if solar makes sense on their land.",
+      impact:
+        "Farmers go from sketch to crop + solar layout with payback in one sitting, with voice-first analytics for tradeoffs.",
+      highlights: [
+        "Digital Twin: Earth Engine + NASA POWER + RAG for elevation, irradiance, and zoning.",
+        "3D simulator: React + Three.js canvas where crops and solar arrays coexist.",
+        "Energy Architect: heuristic optimization for crop + solar layouts under budget and terrain constraints.",
+        "Voice layer (ElevenLabs): spoken questions drive scenario changes with audio explanations.",
+        "Farmer in control: lock regions for crops and compare Max Output vs Cost Optimized scenarios.",
+      ],
+      metrics: ["2nd Place EnergyHack@GT", "Minutes not months", "Voice-first analytics"],
+      tags: ["React", "Next.js", "TypeScript", "Google Earth Engine", "NASA POWER", "ElevenLabs", "RAG"],
+      links: {
+        demo: "https://www.youtube.com/watch?v=tDP2SVwtaeI",
+        devpost: "https://devpost.com/software/the-test-test",
+        repo: "https://github.com/asaha96/EnergyHacks2026",
+      },
+      category: "AI",
     },
   ];
 

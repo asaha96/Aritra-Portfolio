@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import useReveal from "@/hooks/use-reveal";
 import leitFlashcards from "@/assets/leit-flashcards.png";
 import chatgtImage from "@/assets/chatgt.png";
@@ -483,15 +484,16 @@ const Portfolio = () => {
           if (!open) setModalProjectId(null);
         }}
       >
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-3xl overflow-hidden flex flex-col">
           {modalProject && (
             <>
-              <DialogHeader>
+              <DialogHeader className="shrink-0">
                 <DialogTitle>{modalProject.title}</DialogTitle>
                 <DialogDescription>{modalProject.subtitle}</DialogDescription>
               </DialogHeader>
 
-              <div className="space-y-4">
+              <ScrollArea className="h-[calc(90vh-8rem)] w-full pr-4">
+                <div className="space-y-4">
                 <div className="relative isolate overflow-hidden rounded-2xl border border-border bg-muted/10 h-auto sm:aspect-[16/10] lg:[aspect-ratio:auto]">
                   <img
                     src={modalProject.image}
@@ -591,7 +593,8 @@ const Portfolio = () => {
                     </a>
                   )}
                 </div>
-              </div>
+                </div>
+              </ScrollArea>
             </>
           )}
         </DialogContent>

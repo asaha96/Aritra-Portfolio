@@ -462,3 +462,8 @@ html.lenis body {
     transition: none;
   }
 }
+
+/* reCAPTCHA v3: hide floating badge; disclosure is shown on the contact form */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}

@@ -3,18 +3,24 @@ import { ArrowUpRight, Mail, Github, Linkedin, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useRecaptchaV3 } from "@/hooks/use-recaptcha-v3";
 import { supabase } from "@/integrations/supabase/client";
 import useReveal from "@/hooks/use-reveal";
 
+const FALLBACK_EMAIL = "asaha96@gatech.edu";
+
+const contactLinks = [
+  { icon: Github, label: "GitHub", href: "https://github.com/asaha96", description: "Open-source work and experiments" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/aritra-saha-522373261/", description: "Research and professional updates" },
+];
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitPhase, setSubmitPhase] = useState<"idle" | "verifying" | "sending">("idle");
   const { toast } = useToast();
   const revealRef = useReveal<HTMLDivElement>();
+  const { execute: executeRecaptcha, isEnabled: recaptchaEnabled } = useRecaptchaV3();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -28,11 +34,26 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      setSubmitPhase("verifying");
+      const recaptchaToken = recaptchaEnabled ? await executeRecaptcha("contact") : null;
+      if (recaptchaEnabled && !recaptchaToken) {
+        toast({
+          title: "Verification failed",
+          description: `Please try again or email me directly at ${FALLBACK_EMAIL}`,
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        setSubmitPhase("idle");
+        return;
+      }
+
+      setSubmitPhase("sending");
+      const { error } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: formData.name.trim(),
           email: formData.email.trim(),
-          message: formData.message.trim()
+          message: formData.message.trim(),
+          recaptchaToken: recaptchaToken ?? undefined
         }
       });
 
@@ -42,37 +63,22 @@ const Contact = () => {
         title: "Message sent successfully!",
         description: "Thank you for reaching out. I'll get back to you within 24-48 hours."
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-    } catch (error: any) {
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error: unknown) {
       console.error('Error sending message:', error);
       toast({
         title: "Failed to send message",
-        description: "Please try again or email me directly at asaha96@gatech.edu",
-        variant: "destructive"
+        description: `Please try again or email me directly at ${FALLBACK_EMAIL}`,
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
+      setSubmitPhase("idle");
     }
   };
-  const contactLinks = [
-    {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/asaha96",
-      description: "Open-source work and experiments",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/aritra-saha-522373261/",
-      description: "Research and professional updates",
-    },
-  ];
+
+  const buttonLabel = submitPhase === "verifying" ? "Verifying..." : submitPhase === "sending" || isSubmitting ? "Sending..." : "Send message";
 
   return (
     <section id="contact" className="section">
@@ -190,6 +196,30 @@ const Contact = () => {
                   />
                 </div>
 
+                {recaptchaEnabled && (
+                  <p className="text-xs text-muted-foreground">
+                    This site is protected by reCAPTCHA and the Google{" "}
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-foreground"
+                    >
+                      Privacy Policy
+                    </a>{" "}
+                    and{" "}
+                    <a
+                      href="https://policies.google.com/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-foreground"
+                    >
+                      Terms of Service
+                    </a>{" "}
+                    apply.
+                  </p>
+                )}
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -198,7 +228,7 @@ const Contact = () => {
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                      Sending...
+                      {buttonLabel}
                     </>
                   ) : (
                     <>

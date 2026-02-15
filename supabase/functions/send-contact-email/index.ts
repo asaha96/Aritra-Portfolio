@@ -1,8 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-
-
+const RECAPTCHA_SECRET_KEY = Deno.env.get("RECAPTCHA_SECRET_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,6 +13,23 @@ interface ContactEmailRequest {
   name: string;
   email: string;
   message: string;
+  recaptchaToken?: string;
+}
+
+const RECAPTCHA_MIN_SCORE = 0.5; // v3 score threshold (0.0 = bot, 1.0 = likely human)
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!RECAPTCHA_SECRET_KEY) return true; // skip if not configured
+  const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `secret=${RECAPTCHA_SECRET_KEY}&response=${encodeURIComponent(token)}`,
+  });
+  const data = await res.json();
+  if (!data.success) return false;
+  // v3 returns a score; v2 does not (score is undefined)
+  if (typeof data.score === "number" && data.score < RECAPTCHA_MIN_SCORE) return false;
+  return true;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,7 +39,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, message }: ContactEmailRequest = await req.json();
+    const { name, email, message, recaptchaToken }: ContactEmailRequest = await req.json();
 
     console.log("Received contact form submission:", { name, email });
 
@@ -37,6 +53,23 @@ const handler = async (req: Request): Promise<Response> => {
           headers: { "Content-Type": "application/json", ...corsHeaders },
         }
       );
+    }
+
+    // Verify reCAPTCHA when secret is configured
+    if (RECAPTCHA_SECRET_KEY) {
+      if (!recaptchaToken) {
+        return new Response(
+          JSON.stringify({ error: "reCAPTCHA verification required" }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+      const valid = await verifyRecaptcha(recaptchaToken);
+      if (!valid) {
+        return new Response(
+          JSON.stringify({ error: "reCAPTCHA verification failed" }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
     }
 
     // Send email to Aritra using Resend API

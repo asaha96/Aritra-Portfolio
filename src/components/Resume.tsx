@@ -38,7 +38,7 @@ const Resume = () => {
     {
       period: "2025-2027",
       degree: "MS Computer Science",
-      focus: "Georgia Tech, ML concentration",
+      focus: "Georgia Tech, ML specialization",
     },
     {
       period: "2023-2026",

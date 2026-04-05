@@ -346,7 +346,7 @@ const Portfolio = () => {
     const af = a.featured ? 1 : 0;
     const bf = b.featured ? 1 : 0;
     if (af !== bf) return bf - af;
-    return a.id - b.id;
+    return b.id - a.id;
   });
 
   const visibleProjects =

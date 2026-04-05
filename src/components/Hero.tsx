@@ -26,11 +26,10 @@ const Hero = () => {
             <div className="space-y-4">
               <p className="mono-label">Aritra Saha / Atlanta, GA</p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl leading-[0.9] text-balance">
-                Building AI and data systems that feel inevitable to use.
+                I build AI systems that ship.
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl">
-                I design the pipeline, the interface, and the systems that connect the two. My work lives in
-                transportation, education, and privacy-first AI.
+                Full-stack engineer working across infrastructure, emergency response, and health tech.
               </p>
             </div>
 

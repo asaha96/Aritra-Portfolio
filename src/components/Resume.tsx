@@ -12,25 +12,24 @@ const Resume = () => {
 
   const experience = [
     {
+      period: "Incoming",
+      role: "Machine Learning Engineering Intern",
+      org: "Apple",
+      detail:
+        "",
+    },
+    {
+      period: "Current",
+      role: "Software Engineer",
+      org: "xAI",
+      detail:
+        "",
+    },
+    {
       period: "Recent",
       role: "Software Engineering Intern",
       org: "Siemens",
-      detail:
-        "Full-stack feature delivery, testing/QA, and shipping improvements that enhanced production.",
-    },
-    {
-      period: "Current",
-      role: "Executive Director",
-      org: "SAILea",
-      detail:
-        "Program design, operations, and community leadership for student AI learning initiatives.",
-    },
-    {
-      period: "Current",
-      role: "Teaching Assistant",
-      org: "Sensation and Perception",
-      detail:
-        "Course support via office hours, feedback, and learner-facing materials focused on clarity and outcomes.",
+      detail: "",
     },
   ];
 

@@ -13,9 +13,9 @@ const Hero = () => {
   ];
 
   const now = [
-    { label: "Now", value: "BS/MS Computer Science at Georgia Tech" },
-    { label: "Labs", value: "ITS & CAV Lab + AI Makerspace" },
-    { label: "Focus", value: "HCI, AI, data systems" },
+    { label: "Now", value: "Software Engineer at xAI" },
+    { label: "Next", value: "ML Engineering Intern at Apple" },
+    { label: "School", value: "BS/MS CS at Georgia Tech" },
   ];
 
   return (
@@ -48,9 +48,9 @@ const Hero = () => {
             <div className="card-floating p-6 space-y-6 lg:-translate-y-4">
               <div className="space-y-2">
                 <p className="mono-label">Current</p>
-                <p className="text-base font-medium">BS/MS Computer Science at Georgia Tech</p>
+                <p className="text-base font-medium">Software Engineer at xAI</p>
                 <p className="text-sm text-muted-foreground">
-                  Human-centered AI, data systems, and applied research.
+                  Incoming ML Engineering Intern at Apple
                 </p>
               </div>
               <div className="h-px bg-foreground/10" />

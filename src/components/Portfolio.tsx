@@ -256,6 +256,88 @@ const Portfolio = () => {
       },
       category: "AI",
     },
+    {
+      id: 9,
+      title: "Conduit",
+      subtitle: "Wastewater Intelligence Platform",
+      image: "/lovable-uploads/conduit-hero.png",
+      imageAlt: "Conduit real-time wastewater treatment monitoring dashboard with 3D waste visualization",
+      description:
+        "Full-stack operations platform for wastewater treatment plants with real-time monitoring, AI copilot, semantic search, and immersive 3D waste visualization.",
+      problem:
+        "Plant operators juggle disconnected legacy systems and paper logs, missing the integrated tooling modern software teams take for granted.",
+      impact:
+        "Unifies monitoring, compliance, AI assistance, and field operations with semantic search across all historical plant data.",
+      highlights: [
+        "Built real-time dashboard with live KPI cards and animated sensor gauges for plant health.",
+        "Added AI copilot with semantic search across logs, alerts, and work orders via vector embeddings.",
+        "Created 3D waste visualization with procedural PBR textures and real-time YOLO debris classification.",
+        "Deployed YOLOv8 edge inference on Vultr GPUs for 1080p video stream analysis.",
+        "Shipped Expo React Native field app with offline-first architecture and LiDAR scanner.",
+      ],
+      metrics: ["Real-time monitoring", "Semantic search", "Edge ML inference"],
+      tags: ["Next.js", "TypeScript", "React Three Fiber", "FastAPI", "YOLOv8", "Actian Cortex", "ElevenLabs", "Expo"],
+      links: {
+        demo: "https://youtu.be/0Bd1VIuyFuI?si=tixjo3879lzGVPGJ",
+        devpost: "https://devpost.com/software/conduit-8bhgt4",
+      },
+      category: "Systems",
+    },
+    {
+      id: 10,
+      title: "Orca",
+      subtitle: "AI Agent Network for Emergency Response",
+      image: "/lovable-uploads/orca-hero.png",
+      imageAlt: "Orca dashboard with Mapbox building selection and 3D Gaussian splat fire simulation",
+      description:
+        "AI agent orchestration network that lets anyone simulate a natural disaster on any building on Earth using 3D Gaussian splat world models and multi-agent consensus analysis.",
+      problem:
+        "Firefighters can't practice on the real buildings where tragedies happen, making life-or-death decisions with incomplete information.",
+      impact:
+        "Generates AI-annotated 3D world models of any building with consensus-driven labels for severity, evacuation, and deployment.",
+      highlights: [
+        "Built world model pipeline from Street View imagery to AI-enhanced 3D Gaussian splat reconstructions.",
+        "Deployed multi-agent orchestration with Llama Vision and GPT-5 Mini synthesizing consensus via Redis.",
+        "Rendered interactive 3D scenes with real-time WebSocket-streamed agent annotations.",
+        "Generated annotated world models with actionable labels for fire severity and evacuation routing.",
+        "Integrated Solana incentive layer via OpenClaw for agent network participation.",
+      ],
+      metrics: ["Any building on Earth", "Multi-agent consensus", "3D Gaussian splats"],
+      tags: ["Next.js", "TypeScript", "React Three Fiber", "FastAPI", "Modal", "Redis", "Mapbox", "Solana", "Python"],
+      links: {
+        demo: "https://youtu.be/OFuL2hlm1cc?si=Jut6wa40Qo-u3Mur",
+        devpost: "https://devpost.com/software/orca-net?ref_content=my-projects-tab&ref_feature=my_projects",
+      },
+      category: "AI",
+    },
+    {
+      id: 11,
+      title: "Praxis",
+      subtitle: "Personalized Surgical Rehearsal",
+      image: "/lovable-uploads/praxis-hero.png",
+      imageAlt: "Praxis 3D surgical simulation with hand-tracked interaction on patient-specific anatomy",
+      description:
+        "Surgical rehearsal platform that turns a patient's CT scan into a personalized 3D reconstruction, with hand-tracked simulation, AI narration, and risk analysis.",
+      problem:
+        "Over 10% of surgeries have errors from insufficient anatomical familiarity, and cadaver labs and high-fidelity simulators are increasingly inaccessible.",
+      impact:
+        "Lets surgeons rehearse procedures on their specific patient's 3D anatomy with AI narration and risk analysis.",
+      highlights: [
+        "Built CT-to-3D pipeline with marching cubes extraction and World Labs Gaussian splat generation.",
+        "Implemented MediaPipe hand tracking for pointing, pinching, and tracing incisions without hardware.",
+        "Added AI surgical assistant with Kimi K2 for risk analysis, narration, and post-session summaries.",
+        "Rendered personalized simulations with annotated risk zones on the patient's actual anatomy.",
+        "Supported both DICOM and NIfTI scan inputs with mesh and Gaussian splat outputs.",
+      ],
+      metrics: ["Patient-specific 3D", "Hand tracking", "AI surgical copilot"],
+      tags: ["React", "TypeScript", "Three.js", "FastAPI", "Python", "MediaPipe", "Kimi K2", "World Labs"],
+      links: {
+        demo: "https://youtu.be/NUmlmm_xXpI?si=g5_OCtOJH9ZOuPFI",
+        devpost: "https://devpost.com/software/praxis-sjr8qf?ref_content=my-projects-tab&ref_feature=my_projects",
+        repo: "https://github.com/asaha96/YHack2026",
+      },
+      category: "AI",
+    },
   ];
 
   const categories: Array<"All" | Project["category"]> = ["All", "AI", "Data", "HCI", "Viz", "Systems"];

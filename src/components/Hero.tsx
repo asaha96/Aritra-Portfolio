@@ -48,9 +48,9 @@ const Hero = () => {
             <div className="card-floating p-6 space-y-6 lg:-translate-y-4">
               <div className="space-y-2">
                 <p className="mono-label">Current</p>
-                <p className="text-base font-medium">Software Engineer at xAI</p>
+                <p className="text-base font-medium">BS/MS Computer Science at Georgia Tech</p>
                 <p className="text-sm text-muted-foreground">
-                  Incoming ML Engineering Intern at Apple
+                  Human-centered AI, data systems, and applied research.
                 </p>
               </div>
               <div className="h-px bg-foreground/10" />

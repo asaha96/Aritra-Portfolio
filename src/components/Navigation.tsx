@@ -100,7 +100,7 @@ const Navigation = () => {
             ))}
             <ThemeToggle />
             <a
-              href="https://drive.google.com/file/d/1NcpBAfLgt1q1yhjxhs4IeQVMIFsUdA8R/view?usp=sharing"
+              href="/Aritra-Resume-2026.pdf"
               className="button-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -143,7 +143,7 @@ const Navigation = () => {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <a
-                href="https://drive.google.com/file/d/1NcpBAfLgt1q1yhjxhs4IeQVMIFsUdA8R/view?usp=sharing"
+                href="/Aritra-Resume-2026.pdf"
                 className="button-primary w-fit"
                 target="_blank"
                 rel="noopener noreferrer"
